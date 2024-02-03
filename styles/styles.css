@@ -65,6 +65,7 @@ html,body{
   height: 10vh;
   padding: 20px;
   margin-top: 1rem;
+  color: var(--uno-3);
 }
 .left-header{
   display: flex;
@@ -154,8 +155,8 @@ span {
   height: 50px;
   float: left;
   cursor: pointer;
-  background-color: var(--off-white);
-  color: #000000;
+  color: var(--uno-1);
+  border: 2px solid var(--uno-2);
   line-height: 48px;
   text-align: center;
   margin-left: 2px;
@@ -174,9 +175,6 @@ span {
   width: 75px;
 }
 
-.key__esc {
-  background: var(--peach);
-}
 
 .key__enter {
   width: 112px;
@@ -198,9 +196,6 @@ span {
   width: 70px;
 }
 
-.key__arrow {
-  background: var(--green);
-}
 
 .feather {
   margin-top: 10px;
@@ -236,14 +231,14 @@ span {
   position: absolute;
   display: flex;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--uno-4);
   column-gap: 1rem;
-  bottom: 10vh;
+  bottom: 5vh;
 }
 .button-con{
-  padding: 10px;
+  padding: .5rem;
   background-color: var(--uno-4);
   color: #152238;
 }
@@ -270,10 +265,5 @@ span {
 @media (max-width: 1400px) {
   .device-warning{
     display: flex;
-  }
-}
-@media (max-hieght: 900px){
-  .shortcut-display{
-    display: none;
   }
 }
