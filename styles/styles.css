@@ -23,7 +23,7 @@
   box-sizing: border-box;
   text-decoration: none;
   outline: none; border: none;
-  transition: all .2s linear;
+  transition: all .1s linear;
   list-style-type: none;
   font-family: 'Nunito', sans-serif;
 
