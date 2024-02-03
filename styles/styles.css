@@ -257,6 +257,7 @@ span {
   justify-content: space-around;
   background: #152238;
   display: none;
+  pading: 4rem;
 }
 .device-warning h1{
   font-size: 4rem;
