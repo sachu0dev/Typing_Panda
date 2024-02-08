@@ -25,20 +25,21 @@ function createParagraph(words) {
     handeleTypingEvents(letterConstainers,event);
   });
 }
+let currentLetterIndex = 0;
+let errorCount = 0;
 function handeleTypingEvents(letterContainers, event) {
   const key = event.key;
-  letterContainers.forEach((letter, index) => {
-    if (letter.textContent.trim() === key) {
-      letter.classList.remove('current');
-      letter.classList.add('correct');
-      letterContainers[index + 1].classList.add('current');
-      // continue;
-    } else {
-      letter.classList.remove('wrong');
-    }
-  });
+  letterContainers[currentLetterIndex].classList.add("current");
+  if(letterContainers[currentLetterIndex].textContent.trim() === key){
+    letterContainers[currentLetterIndex].classList.remove("current")
+    letterContainers[currentLetterIndex].classList.add("correct");
+    letterContainers[currentLetterIndex + 1].classList.add("current");
+    currentLetterIndex = currentLetterIndex + 1;
+  } else {
+    letterContainers[currentLetterIndex].classList.add("wrong");
+    errorCount= errorCount + 1;
+  }
 }
-
 
 
 // keyboard click animations
