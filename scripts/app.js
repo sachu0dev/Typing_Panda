@@ -3,8 +3,7 @@ import { tempWords as words } from "./wordGen.API.js";
 
 // query selectors
 const textSection = document.querySelector('.text-section');
-
-
+const modal = document.querySelector('.modal');
 // event listeners
 window.addEventListener("DOMContentLoaded", createParagraph(words));
 
@@ -27,12 +26,17 @@ function createParagraph(words) {
 
 let currentLetterIndex = 0;
 let errorCount = 0;
+timeFlag = true;
 
 function handleTypingEvents(letterContainers, event) {
   const key = event.key;
-  
+  modal.classList.add("hide")
   if (currentLetterIndex >= letterContainers.length) {
     // make a function to save results and start again
+    textSection.innerHTML = "";
+    currentLetterIndex = 0;
+    errorCount = 0;
+    createParagraph(words);
     return;
   }
   
@@ -51,7 +55,15 @@ function handleTypingEvents(letterContainers, event) {
   }
 }
 
-
+function listenTime(flag){
+  if(flag){
+    const date  = new Date();
+    const startTime = date.getMilliseconds();
+  } else {
+    const date = new Date();
+    const endTime = date.getMilliseconds();
+  }
+}
 // keyboard click animations
 const keys = document.querySelectorAll('.key');
 
