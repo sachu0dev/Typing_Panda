@@ -17,7 +17,8 @@ window.addEventListener('DOMContentLoaded', function () {
   document.addEventListener('keypress', handleKeyPress);
 });
 import { tempWords as words } from "./wordGen.API.js";
-
+let isEventTrue = false;
+let letterContainers = null;
 // query selectors
 const textSection = document.querySelector('.text-section');
 const modal = document.querySelector('.modal');
@@ -34,11 +35,13 @@ function createParagraph(words) {
     textSection.appendChild(div);
   })
   
-  const letterContainers = document.querySelectorAll('.letter');
-  
-  window.addEventListener('keydown', function(event) {
-    handleTypingEvents(letterContainers, event);
-  });
+  letterContainers = document.querySelectorAll('.letter');
+  if(!isEventTrue){
+    window.addEventListener('keydown', function(event) {
+      handleTypingEvents(letterContainers, event);
+    });
+    isEventTrue = true;
+  }
 }
 
 let currentLetterIndex = 0;

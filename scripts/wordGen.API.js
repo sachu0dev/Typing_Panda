@@ -1,6 +1,6 @@
 export { tempWords };
 
-const tempWords = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore saepe inventore eius laudantium veritatis incidunt iusto alias recusandae, quod pariatur. ";
+const tempWords = "asdasd";
 // const axios = require('axios');
 
 // const API_KEY = 'YOUR_API_KEY';
