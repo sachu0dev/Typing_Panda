@@ -8,7 +8,6 @@ const textSection = document.querySelector('.text-section');
 // event listeners
 window.addEventListener("DOMContentLoaded", createParagraph(words));
 
-// *******functions********
 
 function createParagraph(words) {
   words = words.split('');
@@ -18,26 +17,38 @@ function createParagraph(words) {
     div.classList.add('letter');
     textSection.appendChild(div);
   })
-  console.log(words);
-  const letterConstainers = document.querySelectorAll('.letter');
-  console.log(letterConstainers)
+  
+  const letterContainers = document.querySelectorAll('.letter');
+  
   window.addEventListener('keydown', function(event) {
-    handeleTypingEvents(letterConstainers,event);
+    handleTypingEvents(letterContainers, event);
   });
 }
+
 let currentLetterIndex = 0;
 let errorCount = 0;
-function handeleTypingEvents(letterContainers, event) {
+
+function handleTypingEvents(letterContainers, event) {
   const key = event.key;
+  
+  if (currentLetterIndex >= letterContainers.length) {
+    // make a function to save results and start again
+    return;
+  }
+  
   letterContainers[currentLetterIndex].classList.add("current");
-  if(letterContainers[currentLetterIndex].textContent.trim() === key){
-    letterContainers[currentLetterIndex].classList.remove("current")
+  
+  if (letterContainers[currentLetterIndex].textContent.trim() === key) {
+    letterContainers[currentLetterIndex].classList.remove("current");
     letterContainers[currentLetterIndex].classList.add("correct");
-    letterContainers[currentLetterIndex + 1].classList.add("current");
-    currentLetterIndex = currentLetterIndex + 1;
+    currentLetterIndex++;
+    
+    if (currentLetterIndex < letterContainers.length) {
+      letterContainers[currentLetterIndex].classList.add("current");
+    }
   } else {
     letterContainers[currentLetterIndex].classList.add("wrong");
-    errorCount= errorCount + 1;
+    errorCount++;
   }
 }
 
