@@ -140,6 +140,10 @@ html,body{
   font-weight: 700;
   text-align: center;
 }
+
+.text-section div{
+  display: inline;
+}
 /* keyboard */
 
 span {
