@@ -1,4 +1,21 @@
 feather.replace();
+const keys = document.querySelectorAll('.key');
+
+window.addEventListener('DOMContentLoaded', function () {
+
+  function handleKeyPress(event) {
+    const key = event.key.toLowerCase();
+    keys.forEach(function (element) {
+      if (element.textContent.trim().toLowerCase() === key) {
+        element.classList.add('active');
+        setTimeout(()=> {
+          element.classList.remove('active');
+        },200)
+      }
+    });
+  }
+  document.addEventListener('keypress', handleKeyPress);
+});
 import { tempWords as words } from "./wordGen.API.js";
 
 // query selectors
@@ -65,22 +82,3 @@ function listenTime(flag){
   }
 }
 // keyboard click animations
-const keys = document.querySelectorAll('.key');
-
-window.addEventListener('DOMContentLoaded', function () {
-
-  function handleKeyPress(event) {
-    const key = event.key.toLowerCase();
-    keys.forEach(function (element) {
-      if (element.textContent.trim().toLowerCase() === key) {
-        element.classList.add('active');
-        setTimeout(()=> {
-          element.classList.remove('active');
-        },200)
-      }
-    });
-  }
-
-  // Event listener for keyboard input
-  document.addEventListener('keypress', handleKeyPress);
-});
