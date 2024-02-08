@@ -144,6 +144,11 @@ html,body{
 .text-section div{
   display: inline;
 }
+
+.current{
+  background-color: var(--duo-1);
+  color: #152238;
+}
 /* keyboard */
 
 span {
