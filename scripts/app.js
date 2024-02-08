@@ -37,8 +37,7 @@ function handleTypingEvents(letterContainers, event) {
   }
   
   letterContainers[currentLetterIndex].classList.add("current");
-  
-  if (letterContainers[currentLetterIndex].textContent.trim() === key) {
+  if (letterContainers[currentLetterIndex].textContent === key) {
     letterContainers[currentLetterIndex].classList.remove("current");
     letterContainers[currentLetterIndex].classList.add("correct");
     currentLetterIndex++;
