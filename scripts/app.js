@@ -1,6 +1,8 @@
 feather.replace();
 const keys = document.querySelectorAll('.key');
-
+let wordSettings ={
+  sentenc
+}
 window.addEventListener('DOMContentLoaded', function () {
 
   function handleKeyPress(event) {
@@ -16,7 +18,7 @@ window.addEventListener('DOMContentLoaded', function () {
   }
   document.addEventListener('keypress', handleKeyPress);
 });
-import { tempWords as words } from "./wordGen.API.js";
+
 let isEventTrue = false;
 let letterContainers = null;
 // query selectors
