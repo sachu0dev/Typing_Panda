@@ -1,7 +1,21 @@
 feather.replace();
+
 const keys = document.querySelectorAll('.key');
 let wordSettings ={
-  sentenc
+  sentences: 5,
+  punctuations: true,
+  capital: true
+}
+let words = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid laboriosam quidem ut nulla consequuntur molestiae labore? Perferendis veniam omnis molestias.";
+async function fetchParagraph() {
+  try {
+      const response = await fetch(`http://localhost:3000/generate-paragraph?capital=${wordSettings.capital}&sentences=${wordSettings.sentences}&punctuations=${wordSettings.punctuations}`);
+      const data = await response.json();
+      console.log(data.paragraph);
+      words = data.paragraph;
+  } catch (error) {
+      console.error('Error fetching paragraph:', error);
+  }
 }
 window.addEventListener('DOMContentLoaded', function () {
 
@@ -48,7 +62,6 @@ function createParagraph(words) {
 
 let currentLetterIndex = 0;
 let errorCount = 0;
-timeFlag = true;
 
 function handleTypingEvents(letterContainers, event) {
   const key = event.key;
@@ -77,13 +90,4 @@ function handleTypingEvents(letterContainers, event) {
   }
 }
 
-function listenTime(flag){
-  if(flag){
-    const date  = new Date();
-    const startTime = date.getMilliseconds();
-  } else {
-    const date = new Date();
-    const endTime = date.getMilliseconds();
-  }
-}
 // keyboard click animations

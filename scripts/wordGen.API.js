@@ -1,41 +1,47 @@
+const express = require('express');
 const { LoremIpsum } = require("lorem-ipsum");
 
-function genParagraph(sentences){
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+function genParagraph(sentences) {
     const lorem = new LoremIpsum({
         sentencesPerParagraph: {
-          max: sentences,
-          min: sentences - 2
+            max: sentences,
+            min: sentences
         },
         wordsPerSentence: {
-          max: 10,
-          min: 6
+            max: 12,
+            min: 10
         }
-      });
-      let paragraph = lorem.generateParagraphs(1);
-      filterParagraph(paragraph);
+    });
+    let paragraph = lorem.generateParagraphs(1);
+    return paragraph;
 }
-function filterParagraph(paragraph, punctuations = true, capital = true) {
-    let filteredText = paragraph;
-  
+function capitalizeFirstLetter(sentence) {
+    return sentence.charAt(0).toUpperCase() + sentence.slice(1);
+}
+app.get('/generate-paragraph', (req, res) => {
+    const sentences = parseInt(req.query.sentences) || 5;
+    const punctuations = req.query.punctuations === 'true'; 
+    const capital = req.query.capital === 'true';
+
+    let filteredText = genParagraph(sentences);
+
+    if (capital) {
+        // Corrected to use filteredText instead of paragraph
+        filteredText = filteredText.split('. ').map(sentence => capitalizeFirstLetter(sentence)).join('. ');
+    } else {
+        filteredText = filteredText.toLowerCase();
+    }
+
     if (!punctuations) {
-      filteredText = filteredText.replace(/[^\w\s]/g, '');
+        filteredText = filteredText.replace(/[^\w\s]/g, '');
     }
-  
-    if (!capital) {
-      filteredText = filteredText.toLowerCase();
-    }
-  
-    return filteredText;
-  }
-  
-  // Example usage:
-  const paragraph = "This is a test paragraph! It includes some Punctuation, and Some Capital Letters.";
-  
-  // Filter the paragraph removing punctuations and converting to lowercase
-  const filteredText = filterParagraph(paragraph);
-  console.log(filteredText); // Output: "this is a test paragraph it includes some punctuation and some capital letters"
-  
-  // Filter the paragraph keeping punctuations and capital letters
-  const filteredTextWithPunctuationsAndCapital = filterParagraph(paragraph, true, true);
-  console.log(filteredTextWithPunctuationsAndCapital); // Output: "This is a test paragraph! It includes some Punctuation, and Some Capital Letters."
-  
+
+    res.json({ paragraph: filteredText });
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
