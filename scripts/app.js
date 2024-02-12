@@ -6,7 +6,7 @@ let wordSettings ={
   punctuations: true,
   capital: true
 }
-let words = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid laboriosam quidem ut nulla consequuntur molestiae labore Perferendis veniam omnis molestias.";
+let words = "";
 async function fetchParagraph() {
   try {
       const response = await fetch(`http://localhost:3000/generate-paragraph?capital=${wordSettings.capital}&punctuations=${wordSettings.punctuations}&sentences=${wordSettings.sentences}`);
@@ -17,6 +17,7 @@ async function fetchParagraph() {
       console.error('Error fetching paragraph:', error);
   }
 }
+fetchParagraph();
 window.addEventListener('DOMContentLoaded', function () {
 
   function handleKeyPress(event) {
@@ -71,6 +72,7 @@ function handleTypingEvents(letterContainers, event) {
     textSection.innerHTML = "";
     currentLetterIndex = 0;
     errorCount = 0;
+    fetchParagraph();
     createParagraph(words);
     return;
   }
