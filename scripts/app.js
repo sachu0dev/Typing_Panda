@@ -78,7 +78,7 @@ function handleTypingEvents(letterContainers, event) {
   }
   
   letterContainers[currentLetterIndex].classList.add("current");
-  if (/^[a-z]$/.test(key) && letterContainers[currentLetterIndex].textContent === key) {
+  if (letterContainers[currentLetterIndex].textContent === key) {
     letterContainers[currentLetterIndex].classList.remove("current");
     letterContainers[currentLetterIndex].classList.add("correct");
     currentLetterIndex++;
@@ -86,7 +86,7 @@ function handleTypingEvents(letterContainers, event) {
     if (currentLetterIndex < letterContainers.length) {
       letterContainers[currentLetterIndex].classList.add("current");
     }
-  } else {
+  } else if (/^[a-z]$/.test(key)){
     letterContainers[currentLetterIndex].classList.add("wrong");
     errorCount++;
   }
