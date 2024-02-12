@@ -2,7 +2,9 @@ const express = require('express');
 const { LoremIpsum } = require("lorem-ipsum");
 
 const app = express();
+const cors = require('cors'); 
 const PORT = process.env.PORT || 3000;
+app.use(cors());
 
 function genParagraph(sentences) {
     const lorem = new LoremIpsum({
@@ -11,8 +13,8 @@ function genParagraph(sentences) {
             min: sentences
         },
         wordsPerSentence: {
-            max: 12,
-            min: 10
+            max: 6,
+            min: 5
         }
     });
     let paragraph = lorem.generateParagraphs(1);

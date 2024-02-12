@@ -370,6 +370,10 @@ span {
   .device-warning{
     display: flex;
   }
+  .modal{
+    display: none;
+    z-index: -10000;
+  }
 }
 @media (max-height: 850px) {
   .shortcut-display {
@@ -381,6 +385,10 @@ span {
 @media (max-height: 799px) {
   .device-warning{
     display: flex;
+  }
+  .modal{
+    display: none;
+    z-index: -10000;
   }
 }
 

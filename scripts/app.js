@@ -2,14 +2,14 @@ feather.replace();
 
 const keys = document.querySelectorAll('.key');
 let wordSettings ={
-  sentences: 5,
+  sentences: 4,
   punctuations: true,
   capital: true
 }
-let words = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid laboriosam quidem ut nulla consequuntur molestiae labore? Perferendis veniam omnis molestias.";
+let words = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid laboriosam quidem ut nulla consequuntur molestiae labore Perferendis veniam omnis molestias.";
 async function fetchParagraph() {
   try {
-      const response = await fetch(`http://localhost:3000/generate-paragraph?capital=${wordSettings.capital}&sentences=${wordSettings.sentences}&punctuations=${wordSettings.punctuations}`);
+      const response = await fetch(`http://localhost:3000/generate-paragraph?capital=${wordSettings.capital}&punctuations=${wordSettings.punctuations}&sentences=${wordSettings.sentences}`);
       const data = await response.json();
       console.log(data.paragraph);
       words = data.paragraph;
