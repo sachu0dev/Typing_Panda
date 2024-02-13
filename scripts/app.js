@@ -3,8 +3,8 @@ feather.replace();
 const keys = document.querySelectorAll('.key');
 let wordSettings ={
   sentences: 4,
-  punctuations: true,
-  capital: true
+  punctuations: false,
+  capital: false
 }
 let words = "";
 async function fetchParagraph() {

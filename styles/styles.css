@@ -137,7 +137,7 @@ html,body{
   height: 28vh;
   margin-top: 2rem;
   font-size: 2.4rem;
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
   position: relative;
 }
@@ -317,7 +317,7 @@ span {
   height: 80vh;
   width: 15vw;
   position: absolute;
-  right: -18vw;
+  right: 0;
   top: 9vh;
   display: flex;
   flex-direction: column;
@@ -369,8 +369,14 @@ span {
   .col i{
   font-size: 1.3rem;
   }
+  .logo-col img{
+    display: none;
   }
-@media (max-width: 1400px) {
+  .setting-container{
+    width: 50vw;
+  }
+}
+@media (max-width: 1200px) {
   .device-warning{
     display: flex;
   }
@@ -385,8 +391,14 @@ span {
     bottom: 50vh;
     rotate: 270deg;
   }
+  .text-section{
+    margin-top: .5rem;
+  }
+  .setting-container{
+    margin-top: .5rem;
+  }
 }
-@media (max-height: 799px) {
+@media (max-height: 700px) {
   .device-warning{
     display: flex;
   }
@@ -395,4 +407,12 @@ span {
     z-index: -10000;
   }
 }
-
+@media (max-width: 500px){
+  .device-warning h1{
+    font-size: 3rem;
+  }
+  .device-warning p{
+    width: 30vw;
+    font-size: 1.5rem;
+  }
+}
