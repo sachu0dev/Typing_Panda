@@ -375,6 +375,7 @@ span {
   .setting-container{
     width: 50vw;
   }
+  
 }
 @media (max-width: 1200px) {
   .device-warning{
@@ -393,6 +394,7 @@ span {
   }
   .text-section{
     margin-top: .5rem;
+    font-size: 2rem;
   }
   .setting-container{
     margin-top: .5rem;
