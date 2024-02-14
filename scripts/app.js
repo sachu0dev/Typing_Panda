@@ -1,5 +1,9 @@
-feather.replace();
 import scoreAPI from "./scoreAPI.js";
+feather.replace();
+const punctuationsBtn = document.querySelector('.punctuation');
+const capitalBtn = document.querySelector('.capital');
+const defaultBtn = document.querySelector('.default');
+const sentencesInput = document.querySelectorAll('.sentences');
 const keys = document.querySelectorAll('.key');
 let wordSettings ={
   sentences: 1,
@@ -14,6 +18,9 @@ let score = {
   error: 0,
   totalLength: 0
 }
+punctuationsBtn.addEventListener('click', setPunctuations);
+capitalBtn.addEventListener('click', setCapital);
+defaultBtn.addEventListener('click', setDefault);
 async function fetchParagraph() {
   try {
       const response = await fetch(`https://sachu0dev-random-wordsapi-x.hsingh.site/generate-paragraph?capital=${wordSettings.capital}&punctuations=${wordSettings.punctuations}&sentences=${wordSettings.sentences}`);
@@ -68,6 +75,7 @@ function createParagraph(words) {
     });
     isEventTrue = true;
   }
+  score.startTime = Date.now();
 }
 
 let currentLetterIndex = 0;
@@ -77,7 +85,6 @@ function handleTypingEvents(letterContainers, event) {
   const key = event.key;
   modal.classList.add("hide");
   if(!isStartedTyping){
-    score.startTime = Date.now();
     score.totalLength = letterContainers.length;
     console.log(score.startTime);
     isStartedTyping = true;
@@ -117,8 +124,49 @@ function handleTypingEvents(letterContainers, event) {
 function calculateSpeed(){
 
  const timeTaken = (score.endTime - score.startTime) / (1000 * 60);
- const wordsTyped = (score.totalLength - score.error)/5;
+ const wordsTyped = (score.totalLength)/5;
  score.speed = (wordsTyped / timeTaken).toFixed(2);
 }
 
-// keyboard click animations
+function setPunctuations(){
+  wordSettings.punctuations = !wordSettings.punctuations;
+  punctuationsBtn.classList.toggle('active-opt');
+  isStartedTyping = false;
+  score = {
+    speed: 0,
+    error: 0,
+    totalLength: 0
+  }
+  textSection.innerHTML = "";
+  currentLetterIndex = 0;
+  fetchParagraph();
+}
+function setCapital(){
+  wordSettings.capital = !wordSettings.capital;
+  capitalBtn.classList.toggle('active-opt');
+  isStartedTyping = false;
+  score = {
+    speed: 0,
+    error: 0,
+    totalLength: 0
+  }
+  textSection.innerHTML = "";
+  currentLetterIndex = 0;
+  fetchParagraph();
+}
+function setDefault(){
+  wordSettings.punctuations = false;
+  wordSettings.capital = false;
+  wordSettings.sentences = 4;
+  punctuationsBtn.classList.remove('active-opt');
+  capitalBtn.classList.remove('active-opt');
+  isStartedTyping = false;
+  score = {
+    speed: 0,
+    error: 0,
+    totalLength: 0
+  }
+  textSection.innerHTML = "";
+  currentLetterIndex = 0;
+  fetchParagraph();
+}

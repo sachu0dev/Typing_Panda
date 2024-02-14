@@ -128,7 +128,9 @@ html,body{
 .right-setting{
   border: none;
 }
-
+.active-opt{
+  color: var(--duo-1);
+}
 
 /* text section */
 
