@@ -1,4 +1,5 @@
 feather.replace();
+import notesAPI from './scoreAPI.js';
 
 const keys = document.querySelectorAll('.key');
 let wordSettings ={
