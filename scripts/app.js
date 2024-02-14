@@ -6,7 +6,7 @@ const defaultBtn = document.querySelector('.default');
 const sentencesInput = document.querySelectorAll('.sentences');
 const keys = document.querySelectorAll('.key');
 let wordSettings ={
-  sentences: 1,
+  sentences: 4,
   punctuations: false,
   capital: false
 }
@@ -21,6 +21,9 @@ let score = {
 punctuationsBtn.addEventListener('click', setPunctuations);
 capitalBtn.addEventListener('click', setCapital);
 defaultBtn.addEventListener('click', setDefault);
+sentencesInput.forEach(function(div) {
+  div.addEventListener("click", getTextContent);
+});
 async function fetchParagraph() {
   try {
       const response = await fetch(`https://sachu0dev-random-wordsapi-x.hsingh.site/generate-paragraph?capital=${wordSettings.capital}&punctuations=${wordSettings.punctuations}&sentences=${wordSettings.sentences}`);
@@ -170,3 +173,24 @@ function setDefault(){
   currentLetterIndex = 0;
   fetchParagraph();
 }
+function setSentencesNumber(){
+}
+function getTextContent(event) {
+  var textContent = event.target.textContent.trim();
+  textContent = parseInt(textContent);
+  if(typeof textContent === 'number'){
+    wordSettings.sentences = textContent;
+    isStartedTyping = false;
+    score = {
+      speed: 0,
+      error: 0,
+      totalLength: 0
+    }
+    textSection.innerHTML = "";
+    currentLetterIndex = 0;
+    fetchParagraph();
+  } else {
+    wordSettings.sentences = 4;
+  }
+}
+
