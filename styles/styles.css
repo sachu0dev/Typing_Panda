@@ -155,6 +155,10 @@ html,body{
   margin-bottom: 2rem;
   left: 0;
 }
+
+ 
+
+
 .hide{
   display: none;
   z-index: -1000;
