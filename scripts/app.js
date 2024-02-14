@@ -7,7 +7,7 @@ const sentencesInput = document.querySelectorAll('.sentences');
 const speedDisplay = document.querySelector('.speed');
 const keys = document.querySelectorAll('.key');
 let wordSettings ={
-  sentences: 1,
+  sentences: 4,
   punctuations: false,
   capital: false
 }
