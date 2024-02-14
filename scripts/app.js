@@ -1,5 +1,4 @@
 feather.replace();
-import notesAPI from './scoreAPI.js';
 
 const keys = document.querySelectorAll('.key');
 let wordSettings ={
@@ -10,7 +9,7 @@ let wordSettings ={
 let words = "";
 async function fetchParagraph() {
   try {
-    const response = await fetch(`https://sachu0dev-random-wordsapi-x.hsingh.site/generate-paragraph?capital=${wordSettings.capital}&punctuations=${wordSettings.punctuations}&sentences=${wordSettings.sentences}`);
+      const response = await fetch(`https://sachu0dev-random-wordsapi-x.hsingh.site/generate-paragraph?capital=${wordSettings.capital}&punctuations=${wordSettings.punctuations}&sentences=${wordSettings.sentences}`);
       const data = await response.json();
       console.log(data.paragraph);
       words = data.paragraph;
