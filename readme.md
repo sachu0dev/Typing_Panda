@@ -1,6 +1,5 @@
 # Typing Panda
 
-![Typing Panda Logo](pandakeyboard.png)
 
 Typing Panda is a fun and interactive typing game designed to enhance your typing skills while providing various options and features to customize your experience. Whether you're a beginner looking to improve your typing speed or a seasoned typist aiming to maintain proficiency, Typing Panda has something for everyone.
 
@@ -41,4 +40,5 @@ To start playing Typing Panda, follow these simple steps:
 
     Check your stats periodically to track your progress and see how you stack up against other players worldwide.
 
+![Typing Panda Logo](pandakeyboard.png)
 Enjoy improving your typing skills with Typing Panda! 🐼🎮🚀
