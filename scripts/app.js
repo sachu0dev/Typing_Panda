@@ -4,9 +4,10 @@ const punctuationsBtn = document.querySelector('.punctuation');
 const capitalBtn = document.querySelector('.capital');
 const defaultBtn = document.querySelector('.default');
 const sentencesInput = document.querySelectorAll('.sentences');
+const speedDisplay = document.querySelector('.speed');
 const keys = document.querySelectorAll('.key');
 let wordSettings ={
-  sentences: 4,
+  sentences: 1,
   punctuations: false,
   capital: false
 }
@@ -129,6 +130,7 @@ function calculateSpeed(){
  const timeTaken = (score.endTime - score.startTime) / (1000 * 60);
  const wordsTyped = (score.totalLength)/5;
  score.speed = (wordsTyped / timeTaken).toFixed(2);
+ speedDisplay.innerHTML = `${score.speed} WPM`;
 }
 
 function setPunctuations(){
