@@ -6,6 +6,7 @@ const defaultBtn = document.querySelector('.default');
 const sentencesInput = document.querySelectorAll('.sentences');
 const speedDisplay = document.querySelector('.speed');
 const acuracyDisplay = document.querySelector('.acuracy');
+const timerDisplay = document.querySelector('.timer');
 const keys = document.querySelectorAll('.key');
 let wordSettings ={
   sentences: 4,
@@ -82,6 +83,7 @@ function createParagraph(words) {
     isEventTrue = true;
   }
   score.startTime = Date.now();
+  startTimer();
 }
 
 let currentLetterIndex = 0;
@@ -109,6 +111,7 @@ function handleTypingEvents(letterContainers, event) {
     textSection.innerHTML = "";
     currentLetterIndex = 0;
     fetchParagraph();
+    resetTimer();
     return;
   }
   
@@ -163,6 +166,7 @@ function setCapital(){
   textSection.innerHTML = "";
   currentLetterIndex = 0;
   fetchParagraph();
+  resetTimer();
 }
 function setDefault(){
   wordSettings.punctuations = false;
@@ -179,6 +183,7 @@ function setDefault(){
   textSection.innerHTML = "";
   currentLetterIndex = 0;
   fetchParagraph();
+  resetTimer();
 }
 function setSentencesNumber(){
 }
@@ -193,11 +198,36 @@ function getTextContent(event) {
       error: 0,
       totalLength: 0
     }
-    textSection.innerHTML = "";
-    currentLetterIndex = 0;
-    fetchParagraph();
   } else {
     wordSettings.sentences = 4;
   }
+  textSection.innerHTML = "";
+  currentLetterIndex = 0;
+  fetchParagraph();
+  resetTimer();
+}
+let intervalId;
+let seconds = 0;
+let minutes = 0;
+
+function updateTimer() {
+  seconds++;
+  if (seconds >= 60) {
+    seconds = 0;
+    minutes++;
+  }
+  timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
+function startTimer() {
+  clearInterval(intervalId);
+  intervalId = setInterval(updateTimer, 1000);
+}
+
+function resetTimer() {
+  clearInterval(intervalId);
+  seconds = 0;
+  minutes = 0;
+  const display = document.getElementById('timer');
+  display.textContent = '00:00';
+}

@@ -213,7 +213,6 @@ html,body{
   font-size: 1.5rem;
   font-weight: 700;
   position: absolute;
-  bottom: .4rem;
   left: 28vw;
   bottom: 50vh;
 }
@@ -222,11 +221,17 @@ html,body{
   font-size: 1.5rem;
   font-weight: 700;
   position: absolute;
-  bottom: .4rem;
   right: 31vw;
   bottom: 50vh;
 }
- 
+.timer{
+  color: var(--uno-2);
+  font-size: 1.5rem;
+  font-weight: 700;
+  position: absolute;
+  left: 47vw;
+  bottom: 50vh;
+}
 
 
 .hide{
@@ -528,6 +533,10 @@ span {
   }
   .acuracy{
     right: 31vw;
+    bottom: 54vh;
+  }
+  .timer{
+    left: 45%;
     bottom: 54vh;
   }
 }
