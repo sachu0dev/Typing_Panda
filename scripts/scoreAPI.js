@@ -2,7 +2,7 @@ export default class scoreAPI {
   
   static getAllScore() {
     const date = new Date();
-    const scores = JSON.parse(localStorage.getItem(`user-score-${date.getDate()}-${date.getMonth() + 1}`)) || [];
+    const scores = JSON.parse(localStorage.getItem(`userScore-${date.getMonth() + 1}${date.getDate()}`)) || [];
     return scores
   }
 
@@ -11,6 +11,6 @@ export default class scoreAPI {
       scoreToSave.updated = new Date().toISOString();
     const date = new Date();
       scores.push(scoreToSave);
-      localStorage.setItem(`user-score-${date.getDate()}-${date.getMonth() + 1}`, JSON.stringify(scores));
+      localStorage.setItem(`userScore-${date.getMonth() + 1}${date.getDate()}`, JSON.stringify(scores));
     }
   }

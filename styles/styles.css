@@ -163,10 +163,17 @@ html,body{
   font-weight: 700;
   position: absolute;
   bottom: .4rem;
-  left: 10rem;
   left: 28vw;
   bottom: 50vh;
-
+}
+.acuracy{
+  color: var(--uno-2);
+  font-size: 1.5rem;
+  font-weight: 700;
+  position: absolute;
+  bottom: .4rem;
+  right: 31vw;
+  bottom: 50vh;
 }
  
 
@@ -188,6 +195,7 @@ html,body{
 }
 .wrong{
   color: #ff6961;
+  background-color: var(--uno-5 );
 }
 /* keyboard */
 

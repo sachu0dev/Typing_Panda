@@ -5,6 +5,7 @@ const capitalBtn = document.querySelector('.capital');
 const defaultBtn = document.querySelector('.default');
 const sentencesInput = document.querySelectorAll('.sentences');
 const speedDisplay = document.querySelector('.speed');
+const acuracyDisplay = document.querySelector('.acuracy');
 const keys = document.querySelectorAll('.key');
 let wordSettings ={
   sentences: 4,
@@ -17,7 +18,8 @@ let score = {
   endTime: 0,
   speed: 0,
   error: 0,
-  totalLength: 0
+  totalLength: 0,
+  acuracy: 0,
 }
 punctuationsBtn.addEventListener('click', setPunctuations);
 capitalBtn.addEventListener('click', setCapital);
@@ -96,7 +98,7 @@ function handleTypingEvents(letterContainers, event) {
   if (currentLetterIndex >= letterContainers.length) {
     // make a function to save results and start again
     score.endTime = Date.now();
-    calculateSpeed();
+    calculateScore();
     scoreAPI.saveScore(score);
     isStartedTyping = false;
     score = {
@@ -125,12 +127,15 @@ function handleTypingEvents(letterContainers, event) {
   }
 }
 
-function calculateSpeed(){
+function calculateScore(){
 
  const timeTaken = (score.endTime - score.startTime) / (1000 * 60);
  const wordsTyped = (score.totalLength)/5;
  score.speed = (wordsTyped / timeTaken).toFixed(2);
+ score.acuracy = (((score.totalLength - score.error) / score.totalLength) * 100).toFixed(2);
+ console.log(score.acuracy)
  speedDisplay.innerHTML = `${score.speed} WPM`;
+ acuracyDisplay.innerHTML = `${score.acuracy}%`;
 }
 
 function setPunctuations(){
