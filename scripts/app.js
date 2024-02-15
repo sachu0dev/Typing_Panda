@@ -133,10 +133,10 @@ function handleTypingEvents(letterContainers, event) {
 function calculateScore(){
 
  const timeTaken = (score.endTime - score.startTime) / (1000 * 60);
+ score.time = timeTaken.toFixed(2);
  const wordsTyped = (score.totalLength)/5;
  score.speed = (wordsTyped / timeTaken).toFixed(2);
  score.acuracy = (((score.totalLength - score.error) / score.totalLength) * 100).toFixed(2);
- console.log(score.acuracy)
  speedDisplay.innerHTML = `${score.speed} WPM`;
  acuracyDisplay.innerHTML = `${score.acuracy}%`;
 }
