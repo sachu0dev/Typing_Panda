@@ -18,49 +18,44 @@
       referrerpolicy="no-referrer"
     />
     <!-- style -->
-    <link rel="stylesheet" href="styles/highscore.css" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="styles/test.css" />
+    <link rel="stylesheet" href="styles/profile.css" />
     <title>Typing Panda</title>
   </head>
   <body>
     <div class="container">
       <div class="main">
-        <h1>World Ranking</h1>
-        <div class="ranking-container">
-          <h1>Highscore:</h1>
-          <div class="user-ranks">
-            <div class="fixed-header">
-              <span>#</span>
-              <span>Users</span>
-              <span>Speed</span>
-              <span>Score</span>
+        <div class="test">
+          <div class="setting-container">
+            <div class="left-setting">
+              <!-- pun -->
+              <div class="punctuation">
+                <i class="fa-solid fa-quote-left"></i> punctuation
+              </div>
+              <!-- num -->
+              <div class="capital">
+                <i class="fa-solid fa-font"></i> capitals
+              </div>
             </div>
-            <div class="rank-col">
-              <span>1.</span>
-              <span>Sensei</span>
-              <span>291 wpm</span>
-              <span>130000</span>
+            <div class="middle-setting">
+              <div class="default">
+                <i class="fa-solid fa-ghost"></i> default
+              </div>
             </div>
-            <div class="rank-col">
-              <span>1.</span>
-              <span>Sensei</span>
-              <span>291 wpm</span>
-              <span>130000</span>
-            </div>
-            <div class="rank-col">
-              <span>1.</span>
-              <span>Sensei</span>
-              <span>291 wpm</span>
-              <span>130000</span>
-            </div>
-            <div class="rank-col">
-              <span>1.</span>
-              <span>Sensei</span>
-              <span>291 wpm</span>
-              <span>130000</span>
+            <div class="right-setting sentences">
+              <div class="words"><i class="fa-solid fa-clock"></i> Time</div>
+              <div>10</div>
+              <div>30</div>
+              <div>60</div>
+              <div>120</div>
             </div>
           </div>
         </div>
-
+        <!-- text-section -->
+        <div class="text-section">
+          <div class="modal">Press Enter Key to start</div>
+        </div>
         <!-- sidebar -->
         <div class="sidebar">
           <div class="logo-col">
@@ -75,11 +70,11 @@
             <i class="fa-solid fa-chart-simple"></i>
             <p>Profile</p>
           </a>
-          <a href="" class="col">
+          <a href="highscore.html" class="col">
             <i class="fa-solid fa-trophy"></i>
             <p>Highscore</p>
           </a>
-          <a href="test.html" class="col">
+          <a href="" class="col">
             <i class="fa-solid fa-jet-fighter"></i>
             Typing Test
           </a>
@@ -124,7 +119,7 @@
     </div>
 
     <!-- scripts -->
-    <script src="scripts/app.js"></script>
+    <script type="module" src="scripts/profile.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
   </body>
 </html>
