@@ -34,7 +34,7 @@ function allDisplay(){
   time = formatTime(time);
   allTime.innerHTML = time;
   allLessons.innerHTML = lessons;
-  allTopSpeed.innerHTML = `${topSpeed}wpm`;
+  allTopSpeed.innerHTML = `${topSpeed.toFixed(1)}wpm`;
   allAvgSpeed.innerHTML = `${(avgSpeed / (lessons)).toFixed(1)}wpm`;
   allAvgAccuracy.innerHTML = `${(avgAccuracy / (lessons)).toFixed(2)}%`;
 
@@ -59,7 +59,7 @@ function todayDisplay(){
   time = formatTime(time);
   todayTime.innerHTML = time;
   todayLessons.innerHTML = lessons;
-  todayTopSpeed.innerHTML = `${topSpeed}wpm`;
+  todayTopSpeed.innerHTML = `${topSpeed.toFixed(1)}wpm`;
   avgSpeed = avgSpeed / lessons;
   todayAvgSpeed.innerHTML =  `${avgSpeed.toFixed(1)}wpm`;
   todayAvgAccuracy.innerHTML = `${(avgAccuracy / lessons).toFixed(2)}%`;
