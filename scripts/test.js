@@ -1,0 +1,1 @@
+const textSection = document.querySelector('.text-section');
