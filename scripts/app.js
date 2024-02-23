@@ -30,7 +30,7 @@ sentencesInput.forEach(function(div) {
 });
 async function fetchParagraph() { 
   try {
-      const response = await fetch(`https://sachu0dev-random-wordsapi-x.hsingh.site/generate-paragraph?capital=${wordSettings.capital}&punctuations=${wordSettings.punctuations}&sentences=${wordSettings.sentences}`);
+      const response = await fetch(`https://sachu0dev-random-wordsapigit-x.hsingh.site/generate-paragraph?capital=${wordSettings.capital}&punctuations=${wordSettings.punctuations}&sentences=${wordSettings.sentences}`);
       const data = await response.json();
       console.log(data.paragraph);
       words = data.paragraph;
@@ -44,6 +44,13 @@ async function fetchParagraph() {
       createParagraph(words);
   }
 }
+// async function fetchParagraph() { 
+//       const response = await fetch(`http://localhost:3000/generate-paragraph?capital=${wordSettings.capital}&punctuations=${wordSettings.punctuations}&sentences=${wordSettings.sentences}`);
+//       const data = await response.json();
+//       console.log(data.paragraph);
+//       words = data.paragraph;
+//       createParagraph(words);
+// }
 window.addEventListener('DOMContentLoaded', fetchParagraph);
 window.addEventListener('DOMContentLoaded', function () {
 
