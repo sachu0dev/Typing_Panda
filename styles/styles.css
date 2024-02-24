@@ -123,9 +123,9 @@ html,body{
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-column-gap: 2rem;
-     -moz-column-gap: 2rem;
-          column-gap: 2rem;
+  -webkit-column-gap: 1rem;
+     -moz-column-gap: 1rem;
+          column-gap: 1rem;
   margin-right: 2rem;
 }
 .right-header i{
@@ -133,6 +133,17 @@ html,body{
 }
 .acc-btn{
   font-size: 1rem;
+  font-weight: bolder;
+  color: var(--duo-1);
+  padding: .3rem .6rem;
+  background: #152238;
+  border-radius: 1rem;
+  border: 2px solid var(--duo-1);
+  cursor: pointer;
+}
+.acc-btn:hover{
+  background: var(--duo-1);
+  color: #152238;
 }
 /* setting container */
 .setting-container{
@@ -240,9 +251,6 @@ html,body{
 .hide{
   display: none;
   z-index: -1000;
-}
-.text-section{
-  overflow-x: scroll;
 }
 .text-section div{
   display: inline;

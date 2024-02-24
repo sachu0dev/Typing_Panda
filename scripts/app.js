@@ -92,6 +92,7 @@ function createParagraph(words) {
   }
   score.startTime = Date.now();
   startTimer();
+  console.log(letterContainers)
 }
 
 let currentLetterIndex = 0;
