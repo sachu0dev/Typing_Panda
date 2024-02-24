@@ -9,7 +9,7 @@ const acuracyDisplay = document.querySelector('.acuracy');
 const timerDisplay = document.querySelector('.timer');
 const keys = document.querySelectorAll('.key');
 let wordSettings ={
-  sentences: 2,
+  sentences: 3,
   punctuations: false,
   capital: false
 }
@@ -32,14 +32,12 @@ async function fetchParagraph() {
   try {
       const response = await fetch(`https://typing-panda-words.vercel.app/generate-paragraph?capital=${wordSettings.capital}&punctuations=${wordSettings.punctuations}&sentences=${wordSettings.sentences}`);
       const data = await response.json();
-      console.log(data.paragraph);
       words = data.paragraph;
       createParagraph(words);
   } catch (error) {
       console.error('Error fetching paragraph:', error + " using local server if available");
       const response = await fetch(`http://localhost:3000/generate-paragraph?capital=${wordSettings.capital}&punctuations=${wordSettings.punctuations}&sentences=${wordSettings.sentences}`);
       const data = await response.json();
-      console.log(data.paragraph);
       words = data.paragraph;
       createParagraph(words);
   }
@@ -104,7 +102,6 @@ function handleTypingEvents(letterContainers, event) {
   modal.classList.add("hide");
   if(!isStartedTyping){
     score.totalLength = letterContainers.length;
-    console.log(score.startTime);
     isStartedTyping = true;
   }
   if (currentLetterIndex >= letterContainers.length) {

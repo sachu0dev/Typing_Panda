@@ -185,7 +185,7 @@ html,body{
   width: 60vw;
   height: 28vh;
   margin-top: 2rem;
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-weight: 600;
   text-align: center;
   position: relative;
@@ -208,11 +208,16 @@ html,body{
   margin-bottom: 2rem;
   left: 0;
 }
+.stats-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 50%;
+}
 .speed{
   color: var(--uno-2);
   font-size: 1.5rem;
   font-weight: 700;
-  position: absolute;
   left: 28vw;
   bottom: 50vh;
 }
@@ -220,7 +225,6 @@ html,body{
   color: var(--uno-2);
   font-size: 1.5rem;
   font-weight: 700;
-  position: absolute;
   right: 31vw;
   bottom: 50vh;
 }
@@ -228,15 +232,15 @@ html,body{
   color: var(--uno-2);
   font-size: 1.5rem;
   font-weight: 700;
-  position: absolute;
   left: 47vw;
   bottom: 50vh;
 }
-
-
 .hide{
   display: none;
   z-index: -1000;
+}
+.text-section{
+  overflow-x: scroll;
 }
 .text-section div{
   display: inline;
