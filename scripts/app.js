@@ -30,7 +30,7 @@ sentencesInput.forEach(function(div) {
 });
 async function fetchParagraph() { 
   try {
-      const response = await fetch(`https://sachu0dev-random-wordsapigit-x.hsingh.site/generate-paragraph?capital=${wordSettings.capital}&punctuations=${wordSettings.punctuations}&sentences=${wordSettings.sentences}`);
+      const response = await fetch(`https://typing-panda-words.vercel.app/generate-paragraph?capital=${wordSettings.capital}&punctuations=${wordSettings.punctuations}&sentences=${wordSettings.sentences}`);
       const data = await response.json();
       console.log(data.paragraph);
       words = data.paragraph;
