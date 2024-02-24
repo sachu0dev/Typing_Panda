@@ -131,7 +131,9 @@ html,body{
 .right-header i{
   font-size: 1.3rem;
 }
-
+.acc-btn{
+  font-size: 1rem;
+}
 /* setting container */
 .setting-container{
   width: 40vw;

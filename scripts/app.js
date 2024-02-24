@@ -9,7 +9,7 @@ const acuracyDisplay = document.querySelector('.acuracy');
 const timerDisplay = document.querySelector('.timer');
 const keys = document.querySelectorAll('.key');
 let wordSettings ={
-  sentences: 3,
+  sentences: 2,
   punctuations: false,
   capital: false
 }
@@ -178,7 +178,7 @@ function setCapital(){
 function setDefault(){
   wordSettings.punctuations = false;
   wordSettings.capital = false;
-  wordSettings.sentences = 4;
+  wordSettings.sentences = 2;
   punctuationsBtn.classList.remove('active-opt');
   capitalBtn.classList.remove('active-opt');
   isStartedTyping = false;
@@ -206,7 +206,7 @@ function getTextContent(event) {
       totalLength: 0
     }
   } else {
-    wordSettings.sentences = 4;
+    wordSettings.sentences = 2;
   }
   textSection.innerHTML = "";
   currentLetterIndex = 0;
