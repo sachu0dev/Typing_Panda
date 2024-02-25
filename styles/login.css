@@ -41,18 +41,21 @@ body{
 }
 .back{
   position: absolute;
-  top: 2rem;
-  left: 3rem;
-  color: var(--duo-1);
-  font-size: 1.5rem;
+	display: flex;
+  top: 5%;
+  left: 5%;
+  color: white;
+  font-size: 1rem;
   cursor: pointer;
   z-index: 10;
-  cursor: pointer;
-  color: var(--uno-3);
+	font-weight: 900;
   align-items: center;
+	background-color: var(--duo-2);
+	padding: 5px;
+	border-radius: 5px;
 }
 .back i{
-  font-size: 1.2rem;
+  font-size: .8rem;
 }
 .main{
 	width: 35vw;
@@ -112,7 +115,8 @@ button{
 	transition: .2s ease-in;
 	cursor: pointer;
 }
-button:hover{
+button:hover,
+.back:hover{
 	background: var(--uno-4);
 }
 .login{
