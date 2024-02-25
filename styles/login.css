@@ -84,7 +84,8 @@ label{
 }
 input{
 	width: 60%;
-	height: 20px;
+	font-size: 1rem;
+	padding: 1rem;
 	background: #e0dede;
 	justify-content: center;
 	display: flex;
