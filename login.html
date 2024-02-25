@@ -26,9 +26,22 @@
       <div class="signup">
         <form>
           <label for="chk" aria-hidden="true">Sign up</label>
-          <input type="text" name="txt" placeholder="User name" required="" />
-          <input type="email" name="email" placeholder="Email" required="" />
           <input
+            id="sign-username"
+            type="text"
+            name="txt"
+            placeholder="User name"
+            required=""
+          />
+          <input
+            id="sign-email"
+            type="email"
+            name="email"
+            placeholder="Email"
+            required=""
+          />
+          <input
+            id="sign-pswd"
             type="password"
             name="pswd"
             placeholder="Password"
@@ -41,8 +54,15 @@
       <div class="login">
         <form>
           <label for="chk" aria-hidden="true">Login</label>
-          <input type="email" name="email" placeholder="Email" required="" />
           <input
+            id="login-email"
+            type="email"
+            name="email"
+            placeholder="Email"
+            required=""
+          />
+          <input
+            id="login-pswd"
             type="password"
             name="pswd"
             placeholder="Password"
@@ -52,5 +72,6 @@
         </form>
       </div>
     </div>
+    <script src="scripts/login.js"></script>
   </body>
 </html>
