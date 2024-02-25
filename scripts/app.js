@@ -8,10 +8,12 @@ const speedDisplay = document.querySelector('.speed');
 const acuracyDisplay = document.querySelector('.acuracy');
 const timerDisplay = document.querySelector('.timer');
 const keys = document.querySelectorAll('.key');
+const ninjaMode = document.querySelector('.mode');
 let wordSettings ={
   sentences: 2,
   punctuations: false,
-  capital: false
+  capital: false,
+  ninja: true
 }
 let words = "";
 let score = {
@@ -28,6 +30,7 @@ defaultBtn.addEventListener('click', setDefault);
 sentencesInput.forEach(function(div) {
   div.addEventListener("click", getTextContent);
 });
+ninjaMode.addEventListener('click', setNinjaMode);
 async function fetchParagraph() { 
   try {
       const response = await fetch(`https://typing-panda-words.vercel.app/generate-paragraph?capital=${wordSettings.capital}&punctuations=${wordSettings.punctuations}&sentences=${wordSettings.sentences}`);
@@ -97,7 +100,6 @@ function createParagraph(words) {
 
 let currentLetterIndex = 0;
 let isStartedTyping = false;
-
 function handleTypingEvents(letterContainers, event) {
   const key = event.key;
   modal.classList.add("hide");
@@ -134,6 +136,13 @@ function handleTypingEvents(letterContainers, event) {
     }
   } else if (/^[a-z]$/.test(key)){
     letterContainers[currentLetterIndex].classList.add("wrong");
+    if(wordSettings.ninja){
+      letterContainers[currentLetterIndex].classList.remove("current");
+      currentLetterIndex++;
+      if (currentLetterIndex < letterContainers.length) {
+        letterContainers[currentLetterIndex].classList.add("current");
+      }
+    }
     score.error++;
   }
 }
@@ -179,6 +188,7 @@ function setCapital(){
 function setDefault(){
   wordSettings.punctuations = false;
   wordSettings.capital = false;
+  wordSettings.ninja = true;
   wordSettings.sentences = 2;
   punctuationsBtn.classList.remove('active-opt');
   capitalBtn.classList.remove('active-opt');
@@ -193,7 +203,19 @@ function setDefault(){
   fetchParagraph();
   resetTimer();
 }
-function setSentencesNumber(){
+function setNinjaMode(){
+  wordSettings.ninja = !wordSettings.ninja;
+  ninjaMode.classList.toggle('active-opt');
+  isStartedTyping = false;
+  score = {
+    speed: 0,
+    error: 0,
+    totalLength: 0
+  }
+  textSection.innerHTML = "";
+  currentLetterIndex = 0;
+  fetchParagraph();
+  resetTimer();
 }
 function getTextContent(event) {
   var textContent = event.target.textContent.trim();
