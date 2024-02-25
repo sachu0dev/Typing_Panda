@@ -258,6 +258,7 @@ html,body{
 
 .current{
   background-color: var(--duo-1);
+  /* border-left: 4px solid var(--duo-1); */
   color: #152238;
 }
 .correct{

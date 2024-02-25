@@ -95,11 +95,24 @@ function createParagraph(words) {
   }
   score.startTime = Date.now();
   startTimer();
-  console.log(letterContainers)
 }
 
 let currentLetterIndex = 0;
 let isStartedTyping = false;
+// window.addEventListener('keydown', ctrlSet( event));
+// function ctrlSet( event){
+//   console.log("working outside")
+//   const key = event.key;
+//   if(key === "Control" && key === "backspace"){
+//     for(let i = currentLetterIndex; i > 0; i--){
+//       if(letterContainers[i].textContent === " "){
+//         console.log('also working inside')
+//         currentLetterIndex = i;
+//         break;
+//       }
+//     }
+//   }
+// }
 function handleTypingEvents(letterContainers, event) {
   const key = event.key;
   modal.classList.add("hide");
@@ -107,8 +120,14 @@ function handleTypingEvents(letterContainers, event) {
     score.totalLength = letterContainers.length;
     isStartedTyping = true;
   }
+  if(key === "Backspace"){
+    if(currentLetterIndex > 0){
+      letterContainers[currentLetterIndex].classList.remove("current");
+      currentLetterIndex--;
+      letterContainers[currentLetterIndex].classList.add("current");
+    }
+  }
   if (currentLetterIndex >= letterContainers.length) {
-    // make a function to save results and start again
     score.endTime = Date.now();
     calculateScore();
     scoreAPI.saveScore(score);
@@ -128,6 +147,9 @@ function handleTypingEvents(letterContainers, event) {
   letterContainers[currentLetterIndex].classList.add("current");
   if (letterContainers[currentLetterIndex].textContent === key) {
     letterContainers[currentLetterIndex].classList.remove("current");
+    if(wordSettings.ninja){
+      letterContainers[currentLetterIndex].classList.remove("wrong");
+    }
     letterContainers[currentLetterIndex].classList.add("correct");
     currentLetterIndex++;
     
