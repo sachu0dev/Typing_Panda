@@ -132,8 +132,8 @@ function handleTypingEvents(letterContainers, event) {
     score.endTime = Date.now();
     calculateScore();
     scoreAPI.saveScore(score);
-    todayDisplay();
-    allDisplay();
+    // todayDisplay();
+    // allDisplay();
     isStartedTyping = false;
     score = {
       speed: 0,
