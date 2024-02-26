@@ -29,4 +29,22 @@ export default class scoreAPI {
       scores.push(scoreToSave);
       localStorage.setItem(`userScore-${date.getMonth() + 1}${date.getDate()}`, JSON.stringify(scores));
     }
+
+    static setAllTimeState(req, stats){
+      if(req === "get"){
+        stats = JSON.parse(localStorage.getItem("allTimeState"));
+        return stats
+      } else if(req === "set"){
+        localStorage.setItem("allTimeState", JSON.stringify(stats));
+      }
+    }
+
+    static setTodayState(req, stats){
+      if(req === "get"){
+        stats = JSON.parse(localStorage.getItem("allTimeState"));
+        return stats
+      } else if(req === "set"){
+        localStorage.setItem("todayState", JSON.stringify(stats));
+      }
+    }
   }

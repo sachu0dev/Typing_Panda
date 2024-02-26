@@ -12,13 +12,14 @@ const todayTopSpeed = document.querySelector('.today-top-speed');
 const todayAvgSpeed = document.querySelector('.today-avg-speed');
 const todayAvgAccuracy = document.querySelector('.today-avg-accuracy');
 
-function allDisplay(){
+export function allDisplay(){
   const scoresList = scoreAPI.getEveryScore();
   let time = 0;
   let lessons = 0;
   let topSpeed = 0;
   let avgSpeed = 0;
   let avgAccuracy = 0;
+  let score = 0;
   scoresList.forEach(scores => {
     const myScore = JSON.parse(localStorage.getItem(scores));
     myScore.forEach(score => {
@@ -31,16 +32,32 @@ function allDisplay(){
       avgAccuracy += parseFloat(score.acuracy);
     })
   })
+  const allStates ={
+    time : time,
+    lessons : lessons,
+    topSpeed : 0,
+    avgSpeed : 0,
+    avgAccuracy : 0,
+    score: 0
+  }
   time = formatTime(time);
+  allStates.lessons
+  allStates.topSpeed = `${topSpeed.toFixed(1)}wpm`;
+  allStates.avgSpeed = `${(avgSpeed / (lessons)).toFixed(1)}wpm`;
+  allStates.avgAccuracy = `${(avgAccuracy / (lessons)).toFixed(2)}%`;
+  allStates.score = (avgSpeed * (lessons)).toFixed(0);
+  console.log(allStates);
+  scoreAPI.setAllTimeState("set", allStates);
+
   allTime.innerHTML = time;
   allLessons.innerHTML = lessons;
-  allTopSpeed.innerHTML = `${topSpeed.toFixed(1)}wpm`;
-  allAvgSpeed.innerHTML = `${(avgSpeed / (lessons)).toFixed(1)}wpm`;
-  allAvgAccuracy.innerHTML = `${(avgAccuracy / (lessons)).toFixed(2)}%`;
+  allTopSpeed.innerHTML = allStates.topSpeed;
+  allAvgSpeed.innerHTML = allStates.avgSpeed;
+  allAvgAccuracy.innerHTML = allStates.avgAccuracy;
 
 }
 
-function todayDisplay(){
+export function todayDisplay(){
   const scores = scoreAPI.getAllScore();
   let time = 0;
   let lessons = 0;
@@ -56,13 +73,27 @@ function todayDisplay(){
     avgSpeed += parseFloat(score.speed);
     avgAccuracy += parseFloat(score.acuracy);
   })
+  const todayStates ={
+    time : time,
+    lessons : lessons,
+    topSpeed : 0,
+    avgSpeed : 0,
+    avgAccuracy : 0,
+    score: 0
+  }
   time = formatTime(time);
+  todayStates.topSpeed = `${topSpeed.toFixed(1)}wpm`;
+  todayStates.avgSpeed = `${(avgSpeed / (lessons)).toFixed(1)}wpm`;
+  todayStates.avgAccuracy = `${(avgAccuracy / (lessons)).toFixed(2)}%`;
+  todayStates.score = (avgSpeed * (lessons)).toFixed(0);
+  console.log(todayStates);
+  scoreAPI.setTodayState("set", todayStates);
+
   todayTime.innerHTML = time;
   todayLessons.innerHTML = lessons;
-  todayTopSpeed.innerHTML = `${topSpeed.toFixed(1)}wpm`;
-  avgSpeed = avgSpeed / lessons;
-  todayAvgSpeed.innerHTML =  `${avgSpeed.toFixed(1)}wpm`;
-  todayAvgAccuracy.innerHTML = `${(avgAccuracy / lessons).toFixed(2)}%`;
+  todayTopSpeed.innerHTML = todayStates.topSpeed;
+  todayAvgSpeed.innerHTML =  todayStates.avgSpeed;
+  todayAvgAccuracy.innerHTML = todayStates.avgAccuracy;
 }
 window.addEventListener('DOMContentLoaded', todayDisplay);
 window.addEventListener('DOMContentLoaded', allDisplay);

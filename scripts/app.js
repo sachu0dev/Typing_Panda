@@ -1,3 +1,4 @@
+import { allDisplay, todayDisplay } from "./profile.js";
 import scoreAPI from "./scoreAPI.js";
 feather.replace();
 const punctuationsBtn = document.querySelector('.punctuation');
@@ -131,6 +132,8 @@ function handleTypingEvents(letterContainers, event) {
     score.endTime = Date.now();
     calculateScore();
     scoreAPI.saveScore(score);
+    todayDisplay();
+    allDisplay();
     isStartedTyping = false;
     score = {
       speed: 0,
