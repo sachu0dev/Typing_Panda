@@ -1,4 +1,4 @@
-import { allDisplay, todayDisplay } from "./profile.js";
+// import { allDisplay, todayDisplay } from "./profile.js";
 import scoreAPI from "./scoreAPI.js";
 feather.replace();
 const punctuationsBtn = document.querySelector('.punctuation');
