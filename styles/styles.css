@@ -519,6 +519,9 @@ span {
 .current-left{
   border-left: 4px solid var(--duo-1);
 }
+.current-Abod{
+  border: 2px solid var(--duo-1);
+}
 @media (max-width: 1600px){
   .setting-container{
     width: 45vw;

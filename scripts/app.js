@@ -274,6 +274,7 @@ function resetTimer() {
 const cursorBox = document.querySelector(".current-box");
 const cursorBot = document.querySelector(".current-bot");
 const cursorLeft = document.querySelector(".current-left");
+const cursorAbod = document.querySelector(".current-Abod");
 cursorBox.addEventListener("click", ()=>{
   current = "current-box";
   isStartedTyping = false;
@@ -313,4 +314,16 @@ cursorLeft.addEventListener("click", ()=>{
   fetchParagraph();
   resetTimer();
 });
-
+cursorAbod.addEventListener("click", ()=>{
+  current = "current-Abod";
+  isStartedTyping = false;
+  score = {
+    speed: 0,
+    error: 0,
+    totalLength: 0
+  }
+  textSection.innerHTML = "";
+  currentLetterIndex = 0;
+  fetchParagraph();
+  resetTimer();
+});
