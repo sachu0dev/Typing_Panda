@@ -9,6 +9,13 @@ const acuracyDisplay = document.querySelector('.acuracy');
 const timerDisplay = document.querySelector('.timer');
 const keys = document.querySelectorAll('.key');
 const ninjaMode = document.querySelector('.mode');
+document.addEventListener('keydown', function(event) {
+  if (event.key === "Tab" || event.key === 'Enter') {
+      event.preventDefault();
+      location.reload();
+  }
+});
+
 let wordSettings ={
   sentences: 2,
   punctuations: false,
@@ -24,12 +31,6 @@ let score = {
   totalLength: 0,
   acuracy: 0,
 }
-document.addEventListener('keydown', function(event) {
-  if (event.altKey && event.key === 'enter') {
-      event.preventDefault();
-      location.reload();
-  }
-});
 punctuationsBtn.addEventListener('click', setPunctuations);
 capitalBtn.addEventListener('click', setCapital);
 defaultBtn.addEventListener('click', setDefault);
