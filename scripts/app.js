@@ -10,7 +10,7 @@ const timerDisplay = document.querySelector('.timer');
 const keys = document.querySelectorAll('.key');
 const ninjaMode = document.querySelector('.mode');
 document.addEventListener('keydown', function(event) {
-  if (event.key === "Tab" || event.key === 'Enter') {
+  if (event.key === "Tab" || event.ctrlKey) {
       event.preventDefault();
       location.reload();
   }
