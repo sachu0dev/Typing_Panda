@@ -25,7 +25,7 @@ let score = {
   acuracy: 0,
 }
 document.addEventListener('keydown', function(event) {
-  if (event.altKey && event.key === 'Tab') {
+  if (event.altKey && event.key === 'enter') {
       event.preventDefault();
       location.reload();
   }
