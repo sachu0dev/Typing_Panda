@@ -1,4 +1,3 @@
-// import { allDisplay, todayDisplay } from "./profile.js";
 import scoreAPI from "./scoreAPI.js";
 feather.replace();
 const punctuationsBtn = document.querySelector('.punctuation');
@@ -25,6 +24,12 @@ let score = {
   totalLength: 0,
   acuracy: 0,
 }
+document.addEventListener('keydown', function(event) {
+  if (event.altKey && event.key === 'Tab') {
+      event.preventDefault();
+      location.reload();
+  }
+});
 punctuationsBtn.addEventListener('click', setPunctuations);
 capitalBtn.addEventListener('click', setCapital);
 defaultBtn.addEventListener('click', setDefault);
@@ -46,13 +51,6 @@ async function fetchParagraph() {
       createParagraph(words);
   }
 }
-// async function fetchParagraph() { 
-//       const response = await fetch(`http://localhost:3000/generate-paragraph?capital=${wordSettings.capital}&punctuations=${wordSettings.punctuations}&sentences=${wordSettings.sentences}`);
-//       const data = await response.json();
-//       console.log(data.paragraph);
-//       words = data.paragraph;
-//       createParagraph(words);
-// }
 window.addEventListener('DOMContentLoaded', fetchParagraph);
 window.addEventListener('DOMContentLoaded', function () {
 
