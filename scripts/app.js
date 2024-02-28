@@ -94,30 +94,17 @@ function createParagraph(words) {
     isEventTrue = true;
   }
   score.startTime = Date.now();
-  startTimer();
 }
 
 let currentLetterIndex = 0;
 let isStartedTyping = false;
-// window.addEventListener('keydown', ctrlSet( event));
-// function ctrlSet( event){
-//   console.log("working outside")
-//   const key = event.key;
-//   if(key === "Control" && key === "backspace"){
-//     for(let i = currentLetterIndex; i > 0; i--){
-//       if(letterContainers[i].textContent === " "){
-//         console.log('also working inside')
-//         currentLetterIndex = i;
-//         break;
-//       }
-//     }
-//   }
-// }
+
 function handleTypingEvents(letterContainers, event) {
   const key = event.key;
   modal.classList.add("hide");
   if(!isStartedTyping){
     score.totalLength = letterContainers.length;
+    startTimer();
     isStartedTyping = true;
   }
   if(key === "Backspace"){
@@ -131,8 +118,6 @@ function handleTypingEvents(letterContainers, event) {
     score.endTime = Date.now();
     calculateScore();
     scoreAPI.saveScore(score);
-    // todayDisplay();
-    // allDisplay();
     isStartedTyping = false;
     score = {
       speed: 0,
