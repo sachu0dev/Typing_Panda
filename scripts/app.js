@@ -15,7 +15,7 @@ document.addEventListener('keydown', function(event) {
       location.reload();
   }
 });
-
+let current = "current";
 let wordSettings ={
   sentences: 2,
   punctuations: false,
@@ -109,9 +109,9 @@ function handleTypingEvents(letterContainers, event) {
   }
   if(key === "Backspace"){
     if(currentLetterIndex > 0){
-      letterContainers[currentLetterIndex].classList.remove("current");
+      letterContainers[currentLetterIndex].classList.remove(current);
       currentLetterIndex--;
-      letterContainers[currentLetterIndex].classList.add("current");
+      letterContainers[currentLetterIndex].classList.add(current);
     }
   }
   if (currentLetterIndex >= letterContainers.length) {
@@ -131,9 +131,9 @@ function handleTypingEvents(letterContainers, event) {
     return;
   }
   
-  letterContainers[currentLetterIndex].classList.add("current");
+  letterContainers[currentLetterIndex].classList.add(current);
   if (letterContainers[currentLetterIndex].textContent === key) {
-    letterContainers[currentLetterIndex].classList.remove("current");
+    letterContainers[currentLetterIndex].classList.remove(current);
     if(wordSettings.ninja){
       letterContainers[currentLetterIndex].classList.remove("wrong");
     }
@@ -141,15 +141,15 @@ function handleTypingEvents(letterContainers, event) {
     currentLetterIndex++;
     
     if (currentLetterIndex < letterContainers.length) {
-      letterContainers[currentLetterIndex].classList.add("current");
+      letterContainers[currentLetterIndex].classList.add(current);
     }
   } else if (/^[a-z]$/.test(key)){
     letterContainers[currentLetterIndex].classList.add("wrong");
     if(wordSettings.ninja){
-      letterContainers[currentLetterIndex].classList.remove("current");
+      letterContainers[currentLetterIndex].classList.remove(current);
       currentLetterIndex++;
       if (currentLetterIndex < letterContainers.length) {
-        letterContainers[currentLetterIndex].classList.add("current");
+        letterContainers[currentLetterIndex].classList.add(current);
       }
     }
     score.error++;
@@ -270,3 +270,47 @@ function resetTimer() {
   const display = document.getElementById('timer');
   display.textContent = '00:00';
 }
+// set cursor
+const cursorBox = document.querySelector(".current-box");
+const cursorBot = document.querySelector(".current-bot");
+const cursorLeft = document.querySelector(".current-left");
+cursorBox.addEventListener("click", ()=>{
+  current = "current-box";
+  isStartedTyping = false;
+  score = {
+    speed: 0,
+    error: 0,
+    totalLength: 0
+  }
+  textSection.innerHTML = "";
+  currentLetterIndex = 0;
+  fetchParagraph();
+  resetTimer();
+});
+cursorBot.addEventListener("click", ()=>{
+  current = "current-bot";
+  isStartedTyping = false;
+  score = {
+    speed: 0,
+    error: 0,
+    totalLength: 0
+  }
+  textSection.innerHTML = "";
+  currentLetterIndex = 0;
+  fetchParagraph();
+  resetTimer();
+});
+cursorLeft.addEventListener("click", ()=>{
+  current = "current-left";
+  isStartedTyping = false;
+  score = {
+    speed: 0,
+    error: 0,
+    totalLength: 0
+  }
+  textSection.innerHTML = "";
+  currentLetterIndex = 0;
+  fetchParagraph();
+  resetTimer();
+});
+

@@ -258,7 +258,6 @@ html,body{
 
 .current{
   background-color: var(--duo-1);
-  /* border-left: 4px solid var(--duo-1); */
   color: #152238;
 }
 .correct{
@@ -499,7 +498,27 @@ span {
 .col i{
   font-size: 1.5rem;
 }
+.cursor-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.cursor{
+  width: 1rem;
+  height: 2rem;
 
+}
+.current-bot{
+  border-bottom: 4px solid var(--duo-1);
+}
+.current-box{
+  background-color: var(--duo-1);
+  color: #152238;
+}
+.current-left{
+  border-left: 4px solid var(--duo-1);
+}
 @media (max-width: 1600px){
   .setting-container{
     width: 45vw;
