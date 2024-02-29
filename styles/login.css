@@ -68,17 +68,23 @@ body{
   position: relative;
 }
 .error-box{
+	width: 18rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
 	position: absolute;
 	font-size: 1rem;
 	padding: .7rem 1rem;
 	top: 1rem;
-	right: -12rem;
+	right: 1rem;
 	background: var(--duo-2);
 	color: #fff;
 	border-radius: 5px;
+	display: none;
 }
 .show-error-box{
-	transform: translateX(-13rem);
+	display: flex;
 }
 #chk{
 	display: none;

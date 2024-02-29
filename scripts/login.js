@@ -20,16 +20,8 @@ const raw = {
   password,
   email
 };
-console.log(raw)
-const requestOptions = {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: raw
-};
-const response = await fetch("http://localhost:3001/signup", {
-      method: "POST", // or 'PUT'
+const response = await fetch("http://localhost:3000/signup", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -37,31 +29,38 @@ const response = await fetch("http://localhost:3001/signup", {
     });
 
     const result = await response.json();
-
+    if(result.message){
+      errorBox.textContent = result.message;
+      errorBox.classList.add("show-error-box");
+      setTimeout(() => {
+        errorBox.classList.remove("show-error-box");
+      })
+    }
 }
 
-function logUser(){
-  const email = loginEmail.value;
-  const pswd = loginPswd.value;
-  const myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-
-  const raw = JSON.stringify({
-    "email": email,
-    "password": pswd
+ async function logUser(e){
+  e.preventDefault();
+  const email = signEmail.value;
+  const password = signPswd.value;
+const raw = {
+  password,
+  email
+};
+  const response = await fetch("http://localhost:3000/signin", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(raw),
   });
 
-  const requestOptions = {
-    method: "POST",
-    headers: myHeaders,
-    body: raw,
-    redirect: "follow"
-  };
-
-  fetch("http://localhost:3000/login", requestOptions)
-    .then(response => response.text())
-    .then(result => {
-      // Handle the response accordingly, such as redirecting to a new page or displaying a success message
+  const result = await response.json();
+  console.log(result);
+  if(result.message){
+    errorBox.textContent = result.message;
+    errorBox.classList.add("show-error-box");
+    setTimeout(() => {
+      errorBox.classList.remove("show-error-box");
     })
-    .catch(error => console.error(error));
+  }
 }

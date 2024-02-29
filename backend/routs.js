@@ -22,6 +22,10 @@ const signupSchema = zod.object({
   password: zod.string().min(6),
   username: zod.string().max(20)
 })
+const signinSchema = zod.object({
+  email: zod.string().email(),
+  password: zod.string().min(6)
+})
 async function verifyUserToken(req, res, next){
   const token = req.headers.authorization;
   const decoded = jwt.verify(token, jwtPassword);
@@ -34,7 +38,7 @@ async function verifyUserToken(req, res, next){
   req.user = user;
   next();
 }
-function userInputCheck(req, res, next){
+function signupInputCheck(req, res, next){
   const user = {
     email: req.body.email,
     password: req.body.password,
@@ -43,12 +47,25 @@ function userInputCheck(req, res, next){
   const result = signupSchema.safeParse(user);
   if(!result.success){
     return res.status(400).json({
-      message: result.error
+      message: "invalid input"
     })
   }
   next();
 }
-app.post("/signup",userInputCheck, async (req, res) => {
+function signinInputCheck(req, res, next){
+  const user = {
+    email: req.body.email,
+    password: req.body.password,
+  }
+  const result = signinSchema.safeParse(user);
+  if(!result.success){
+    return res.status(400).json({
+      message: "invalid input"
+    })
+  }
+  next();
+}
+app.post("/signup",signupInputCheck, async (req, res) => {
   try {
     const user = {
       email: req.body.email,
@@ -56,26 +73,26 @@ app.post("/signup",userInputCheck, async (req, res) => {
       username: req.body.username
     }
     console.log(req.body);
-    // const existingUser = await User.findOne({email: user.email, username: user.username});
-    // if(existingUser){
-    //   return res.status(400).json({
-    //     message: "User already exists with this email or username"
-    //   })
-    // }
+    const existingUser = await User.findOne({email: user.email, username: user.username});
+    if(existingUser){
+      return res.status(400).json({
+        message: "User already exists with this email or username"
+      })
+    }
     const newUser = new User(user);
     newUser.save();
     return res.status(201).json({
       message: "User created successfully"
     })
   }
-  catch{
+  catch(error){
     return res.status(500).json({
       message: "User already exists with this email or username"
     })
   }
 });
 
-app.post("/signin",userInputCheck, async (req, res) => {
+app.post("/signin",signinInputCheck, async (req, res) => {
   try {
     const user = {
       email: req.body.email,
@@ -110,7 +127,7 @@ app.use((err, req, res, next)=>{
     message: err.message
   })
 })
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
