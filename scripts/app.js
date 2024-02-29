@@ -135,8 +135,10 @@ function handleTypingEvents(letterContainers, event) {
   if (letterContainers[currentLetterIndex].textContent === key) {
     letterContainers[currentLetterIndex].classList.remove(current);
     if(wordSettings.ninja){
-      letterContainers[currentLetterIndex].classList.remove("wrong");
-      score.error--;
+      if(letterContainers[currentLetterIndex].classList.contains("wrong")){
+        score.error--;
+        letterContainers[currentLetterIndex].classList.remove("wrong");
+      }
     }
     letterContainers[currentLetterIndex].classList.add("correct");
     currentLetterIndex++;
