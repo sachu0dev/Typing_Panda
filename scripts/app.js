@@ -107,7 +107,7 @@ function handleTypingEvents(letterContainers, event) {
     startTimer();
     isStartedTyping = true;
   }
-  if(key === "Backspace"){
+  if(key === "Backspace" && wordSettings.ninja){
     if(currentLetterIndex > 0){
       letterContainers[currentLetterIndex].classList.remove(current);
       currentLetterIndex--;
@@ -136,6 +136,7 @@ function handleTypingEvents(letterContainers, event) {
     letterContainers[currentLetterIndex].classList.remove(current);
     if(wordSettings.ninja){
       letterContainers[currentLetterIndex].classList.remove("wrong");
+      score.error--;
     }
     letterContainers[currentLetterIndex].classList.add("correct");
     currentLetterIndex++;

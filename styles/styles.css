@@ -164,7 +164,7 @@ html,body{
 }
 .setting-container div div:hover{
   cursor: pointer;
-  color: var(--duo-1);
+  color: var(--uno-1);
 }
 
 .left-setting,
