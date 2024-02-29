@@ -2,69 +2,66 @@ const signUsername = document.getElementById("sign-username");
 const signEmail = document.getElementById("sign-email");
 const signPswd = document.getElementById("sign-pswd");
 const signBtn = document.querySelector(".sign");
-
+const errorBox = document.querySelector(".error-box");
 const loginEmail = document.getElementById("login-email");
 const loginPswd = document.getElementById("login-pswd");
 const loginBtn = document.querySelector(".log");
+
 signBtn.addEventListener("click", signUser);
 loginBtn.addEventListener("click", logUser);
 
-function signUser(){
+async function signUser(e){
+  e.preventDefault();
   const username = signUsername.value;
   const email = signEmail.value;
-  const pswd = signPswd.value;
-  postSign(username, email, pswd);
+  const password = signPswd.value;
+const raw = {
+ username,
+  password,
+  email
+};
+console.log(raw)
+const requestOptions = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: raw
+};
+const response = await fetch("http://localhost:3001/signup", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(raw),
+    });
+
+    const result = await response.json();
+
 }
 
 function logUser(){
-  const username = loginEmail.value;
   const email = loginEmail.value;
   const pswd = loginPswd.value;
-  postLogin(username, email, pswd);
-}
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
 
-function signUser(username, email, pswd){ 
   const raw = JSON.stringify({
     "email": email,
-    "password": pswd,
-    "username": username
+    "password": pswd
   });
 
-const requestOptions = {
-  method: "POST",
-  body: raw,
-  redirect: "follow"
-};
-
-fetch("http://localhost:3000/signup", requestOptions)
-  .then((response) => response.text())
-  .then((result) => console.log(result))
-  .catch((error) => console.error(error));
-}
-
-function logUser(username, email, pswd){
-  const raw = JSON.stringify({
-    "email": email,
-    "password": pswd,
-    "username": username
-  });
-  
   const requestOptions = {
     method: "POST",
+    headers: myHeaders,
     body: raw,
     redirect: "follow"
   };
-  
-  fetch("http://localhost:3000/signin", requestOptions)
-    .then((response) => response.text())
-    .then((result) => {
-      console.log(result);
-      if(result === "success"){
-        window.location.href = "index.html";
-        localStorage.setItem("authToken", result);
-      }else{
-        alert("Wrong username or password");
-      }
+
+  fetch("http://localhost:3000/login", requestOptions)
+    .then(response => response.text())
+    .then(result => {
+      // Handle the response accordingly, such as redirecting to a new page or displaying a success message
     })
-    .catch((error) => console.error(error));
+    .catch(error => console.error(error));
 }

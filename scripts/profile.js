@@ -1,3 +1,4 @@
+
 import scoreAPI from "./scoreAPI.js";
 // all time stats
 const allTime = document.querySelector('.all-time');
@@ -11,7 +12,6 @@ const todayLessons = document.querySelector('.today-lessons');
 const todayTopSpeed = document.querySelector('.today-top-speed');
 const todayAvgSpeed = document.querySelector('.today-avg-speed');
 const todayAvgAccuracy = document.querySelector('.today-avg-accuracy');
-
 export function allDisplay(){
   const scoresList = scoreAPI.getEveryScore();
   let time = 0;
@@ -54,7 +54,6 @@ export function allDisplay(){
   allTopSpeed.innerHTML = allStates.topSpeed;
   allAvgSpeed.innerHTML = allStates.avgSpeed;
   allAvgAccuracy.innerHTML = allStates.avgAccuracy;
-
 }
 
 export function todayDisplay(){

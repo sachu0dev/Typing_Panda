@@ -1,3 +1,4 @@
+
 import scoreAPI from "./scoreAPI.js";
 feather.replace();
 const punctuationsBtn = document.querySelector('.punctuation');
@@ -160,7 +161,6 @@ function handleTypingEvents(letterContainers, event) {
 }
 
 function calculateScore(){
-
  const timeTaken = (score.endTime - score.startTime) / (1000 * 60);
  score.time = timeTaken.toFixed(2);
  const wordsTyped = (score.totalLength - score.error)/5;
@@ -330,3 +330,4 @@ cursorAbod.addEventListener("click", ()=>{
   fetchParagraph();
   resetTimer();
 });
+export { score };
