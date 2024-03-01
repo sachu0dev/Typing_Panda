@@ -72,11 +72,10 @@ app.post("/signup",signupInputCheck, async (req, res) => {
       password: req.body.password,
       username: req.body.username
     }
-    console.log(req.body);
     const existingUser = await User.findOne({email: user.email, username: user.username});
     if(existingUser){
       return res.status(400).json({
-        message: "User already exists with this email or username"
+        message: "User already exists"
       })
     }
     const newUser = new User(user);
@@ -87,7 +86,7 @@ app.post("/signup",signupInputCheck, async (req, res) => {
   }
   catch(error){
     return res.status(500).json({
-      message: "User already exists with this email or username"
+      message: "User already exists"
     })
   }
 });
