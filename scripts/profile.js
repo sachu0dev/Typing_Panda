@@ -27,8 +27,10 @@ async function allDisplay(){
     todayAvgSpeed.innerHTML = allScore.todayStats.avgSpeed;
     todayAvgAccuracy.innerHTML = allScore.todayStats.avgAccuracy;
   } catch (error) {
-    console.error('Error fetching score:', error);
-    window.location.href = "./login.html";
+    const username = localStorage.getItem("username");
+    if(!username){
+      window.location.href = "./login.html";
+    }
   }
 }
 

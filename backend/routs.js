@@ -93,7 +93,6 @@ async function calculateAllTime(req, res, next) {
     AllScore.score = (parseInt(AllScore.avgSpeed) * parseInt(AllScore.lessons)).toFixed(0);
     next();
   } catch (error) {
-    console.error(error);
     return res.status(500).json({
       message: "Internal Server Error"
     });
