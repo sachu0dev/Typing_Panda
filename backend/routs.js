@@ -27,6 +27,7 @@ const signinSchema = zod.object({
   password: zod.string().min(6)
 })
 async function verifyUserToken(req, res, next){
+  try{
   const token = req.headers.authorization;
   const decoded = jwt.verify(token, jwtPassword);
   const user = await User.findOne({email: decoded.email});
@@ -37,6 +38,11 @@ async function verifyUserToken(req, res, next){
   }
   req.user = user;
   next();
+} catch {
+  return res.status(401).json({
+    message: "Unauthorized"
+  })
+}
 }
 function signupInputCheck(req, res, next){
   const user = {
@@ -52,13 +58,17 @@ function signupInputCheck(req, res, next){
   }
   next();
 }
+var AllScore = {
+  time: 0,
+  lessons: 0,
+  topSpeed: 0,
+  avgSpeed: 0,
+  avgAccuracy: 0,
+  score: 0
+};
 async function calculateAllTime(req, res, next) {
   try {
-    
-    const userscore = await UserScore.findOne({ email: req.user.email });
-    console.log(userscore);
-
-    let AllScore = {
+    AllScore = {
       time: 0,
       lessons: 0,
       topSpeed: 0,
@@ -66,21 +76,62 @@ async function calculateAllTime(req, res, next) {
       avgAccuracy: 0,
       score: 0
     };
+    const userscore = await UserScore.findOne({ email: req.user.email });
     userscore.scores.forEach(obj => {
       AllScore.time += parseFloat(obj.time);
       AllScore.lessons += 1;
       if(parseFloat(obj.speed) > AllScore.topSpeed){
         AllScore.topSpeed = parseFloat(obj.speed)
       }
-      AllScore.avgSpeed += parseFloat(obj.avgSpeed);
-      AllScore.avgAccuracy += parseFloat(obj.avgAccuracy);
+      AllScore.avgSpeed += parseFloat(obj.speed);
+      AllScore.avgAccuracy += parseFloat(obj.acuracy);
     });
     AllScore.time = formatTime(AllScore.time);
-    AllScore.topSpeed = `${AllScore.topSpeed.toFixed(1)}wpm`;
+    AllScore.topSpeed = `${AllScore.topSpeed}wpm`;
     AllScore.avgSpeed = `${(AllScore.avgSpeed / (AllScore.lessons)).toFixed(1)}wpm`;
     AllScore.avgAccuracy = `${(AllScore.avgAccuracy / (AllScore.lessons)).toFixed(2)}%`;
-    AllScore.score = (AllScore.avgSpeed * (AllScore.lessons)).toFixed(0);
-    console.log(AllScore);
+    AllScore.score = (parseInt(AllScore.avgSpeed) * parseInt(AllScore.lessons)).toFixed(0);
+    next();
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal Server Error"
+    });
+  }
+}
+var TodayScore = {
+  time: 0,
+  lessons: 0,
+  topSpeed: 0,
+  avgSpeed: 0,
+  avgAccuracy: 0,
+  score: 0
+};
+async function calculateTodayTime(req, res, next) {
+  try {
+    TodayScore = {
+      time: 0,
+      lessons: 0,
+      topSpeed: 0,
+      avgSpeed: 0,
+      avgAccuracy: 0,
+      score: 0
+    };
+    const userscore = await UserScore.findOne({ email: req.user.email });
+    userscore.todayscore.forEach(obj => {
+      TodayScore.time += parseFloat(obj.time);
+      TodayScore.lessons += 1;
+      if(parseFloat(obj.speed) > TodayScore.topSpeed){
+        TodayScore.topSpeed = parseFloat(obj.speed)
+      }
+      TodayScore.avgSpeed += parseFloat(obj.speed);
+      TodayScore.avgAccuracy += parseFloat(obj.acuracy);
+    });
+    TodayScore.time = formatTime(TodayScore.time);
+    TodayScore.topSpeed = `${TodayScore.topSpeed}wpm`;
+    TodayScore.avgSpeed = `${(TodayScore.avgSpeed / (TodayScore.lessons)).toFixed(1)}wpm`;
+    TodayScore.avgAccuracy = `${(TodayScore.avgAccuracy / (TodayScore.lessons)).toFixed(2)}%`;
+    TodayScore.score = (parseInt(TodayScore.avgSpeed) * parseInt(TodayScore.lessons)).toFixed(0);
     next();
   } catch (error) {
     console.error(error);
@@ -202,9 +253,12 @@ app.post("/score", verifyUserToken, async (req, res) => {
 });
 
 
-// app.get("/profile", verifyUserToken, calculateAllTime,async (req, res) => {
-//   res.send("test")
-// })
+app.get("/profile", verifyUserToken, calculateAllTime,calculateTodayTime, async (req, res) => {
+  res.status(201).json({
+    todayStats: TodayScore,
+    allTimeStats: AllScore
+  })
+})
 app.get("/rankings", verifyUserToken, (req, res) => {
   
 })

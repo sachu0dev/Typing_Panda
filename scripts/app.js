@@ -124,7 +124,6 @@ function handleTypingEvents(letterContainers, event) {
     times.endTime = Date.now();
     calculateScore();
     console.log(score)
-    scoreAPI.saveScore(score);
     scoreAPI.postScore(score);
     isStartedTyping = false;
     score = {
