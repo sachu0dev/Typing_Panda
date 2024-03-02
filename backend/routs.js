@@ -1,8 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
-const User = require("./modal");
-const UserScore = require("./modal");
+const { User, UserScore } = require("./modal.js");
 const zod = require("zod");
 const app = express();
 const jwtPassword = "secret";
@@ -52,6 +51,51 @@ function signupInputCheck(req, res, next){
     })
   }
   next();
+}
+async function calculateAllTime(req, res, next) {
+  try {
+    
+    const userscore = await UserScore.findOne({ email: req.user.email });
+    console.log(userscore);
+
+    let AllScore = {
+      time: 0,
+      lessons: 0,
+      topSpeed: 0,
+      avgSpeed: 0,
+      avgAccuracy: 0,
+      score: 0
+    };
+    userscore.scores.forEach(obj => {
+      AllScore.time += parseFloat(obj.time);
+      AllScore.lessons += 1;
+      if(parseFloat(obj.speed) > AllScore.topSpeed){
+        AllScore.topSpeed = parseFloat(obj.speed)
+      }
+      AllScore.avgSpeed += parseFloat(obj.avgSpeed);
+      AllScore.avgAccuracy += parseFloat(obj.avgAccuracy);
+    });
+    AllScore.time = formatTime(AllScore.time);
+    AllScore.topSpeed = `${AllScore.topSpeed.toFixed(1)}wpm`;
+    AllScore.avgSpeed = `${(AllScore.avgSpeed / (AllScore.lessons)).toFixed(1)}wpm`;
+    AllScore.avgAccuracy = `${(AllScore.avgAccuracy / (AllScore.lessons)).toFixed(2)}%`;
+    AllScore.score = (AllScore.avgSpeed * (AllScore.lessons)).toFixed(0);
+    console.log(AllScore);
+    next();
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal Server Error"
+    });
+  }
+}
+function formatTime(input) {
+  const hours = Math.floor(input / 60); 
+  const remainingMinutes = input % 60; 
+  const minutes = Math.floor(remainingMinutes); 
+  const seconds = Math.round((remainingMinutes - minutes) * 60);
+  
+  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 function signinInputCheck(req, res, next){
   const user = {
@@ -122,11 +166,12 @@ app.post("/signin",signinInputCheck, async (req, res) => {
     })
   }
 });
+const json = require('express').json;
+
 app.post("/score", verifyUserToken, async (req, res) => {
   try {
     const userScore = await UserScore.findOne({ email: req.user.email });
     const score = req.body;
-    console.log(userScore);
     if (!userScore) {
       const newUserScore = new UserScore({
         email: req.user.email,
@@ -144,6 +189,7 @@ app.post("/score", verifyUserToken, async (req, res) => {
       }
       await userScore.save();
     }
+
     return res.status(201).json({
       message: "Score saved successfully"
     });
@@ -155,9 +201,10 @@ app.post("/score", verifyUserToken, async (req, res) => {
   }
 });
 
-app.get("/profile", verifyUserToken, (req, res) => {
-  
-})
+
+// app.get("/profile", verifyUserToken, calculateAllTime,async (req, res) => {
+//   res.send("test")
+// })
 app.get("/rankings", verifyUserToken, (req, res) => {
   
 })

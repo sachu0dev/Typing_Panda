@@ -66,9 +66,9 @@ export function todayDisplay(){
   scores.forEach(score => {
     time += parseFloat(score.time);
     lessons++;
-    if(parseFloat(score.speed) > topSpeed)[
+    if(parseFloat(score.speed) > topSpeed){
       topSpeed = parseFloat(score.speed)
-    ]
+    }
     avgSpeed += parseFloat(score.speed);
     avgAccuracy += parseFloat(score.acuracy);
   })

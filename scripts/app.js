@@ -27,12 +27,14 @@ let wordSettings ={
 }
 let words = "";
 let score = {
-  startTime: 0,
-  endTime: 0,
   speed: 0,
   error: 0,
   totalLength: 0,
   acuracy: 0,
+}
+let times = {
+  startTime: 0,
+  endTime: 0,
 }
 punctuationsBtn.addEventListener('click', setPunctuations);
 capitalBtn.addEventListener('click', setCapital);
@@ -97,7 +99,7 @@ function createParagraph(words) {
     });
     isEventTrue = true;
   }
-  score.startTime = Date.now();
+  times.startTime = Date.now();
 }
 
 let currentLetterIndex = 0;
@@ -119,9 +121,11 @@ function handleTypingEvents(letterContainers, event) {
     }
   }
   if (currentLetterIndex >= letterContainers.length) {
-    score.endTime = Date.now();
+    times.endTime = Date.now();
     calculateScore();
+    console.log(score)
     scoreAPI.saveScore(score);
+    scoreAPI.postScore(score);
     isStartedTyping = false;
     score = {
       speed: 0,
@@ -164,7 +168,7 @@ function handleTypingEvents(letterContainers, event) {
 }
 
 function calculateScore(){
- const timeTaken = (score.endTime - score.startTime) / (1000 * 60);
+ const timeTaken = (times.endTime - times.startTime) / (1000 * 60);
  score.time = timeTaken.toFixed(2);
  const wordsTyped = (score.totalLength - score.error)/5;
  score.speed = (wordsTyped / timeTaken).toFixed(2);

@@ -2,7 +2,7 @@ export default class scoreAPI {
   
   static getAllScore(scoresList) {
     const date = new Date();
-    const scores = JSON.parse(localStorage.getItem(`userScore-${date.getMonth() + 1}${date.getDate()}`)) || [];
+    const scores = JSON.parse(localStorage.getItem(`userScore-${date.getMonth()+ 1}${date.getDate()}`)) || [];
     return scores
   }
 
@@ -30,6 +30,21 @@ export default class scoreAPI {
       localStorage.setItem(`userScore-${date.getMonth() + 1}${date.getDate()}`, JSON.stringify(scores));
     }
 
+    static async postScore(scoreToSave){
+      console.log(scoreToSave)
+      const raw = scoreToSave;
+        const response = await fetch("http://localhost:3000/score", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `${localStorage.getItem("token")}`
+          },
+          body: JSON.stringify(raw),
+        });
+      
+        const result = await response.json();
+        console.log(result);
+    }
     static setAllTimeState(req, stats){
       if(req === "get"){
         stats = JSON.parse(localStorage.getItem("allTimeState"));

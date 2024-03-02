@@ -37,5 +37,4 @@ const UserScore = mongoose.model("UserScore", {
 });
 
 
-module.exports = UserScore;
-module.exports = User;
+module.exports = { User, UserScore };
