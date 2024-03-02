@@ -5,7 +5,10 @@ const User = mongoose.model("User", {
     type: String,
     required: true,
   },
-  password: String,
+  password: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     required: true,

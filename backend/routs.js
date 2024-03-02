@@ -30,7 +30,6 @@ const signinSchema = zod.object({
 async function verifyUserToken(req, res, next){
   const token = req.headers.authorization;
   const decoded = jwt.verify(token, jwtPassword);
-  console.log(decoded)
   const user = await User.findOne({email: decoded.email});
   if(!user){
     return res.status(401).json({
@@ -127,7 +126,6 @@ app.post("/score", verifyUserToken, async (req, res) => {
   try {
     const userScore = await UserScore.findOne({ email: req.user.email });
     const score = req.body;
-    console.log(score);
     console.log(userScore);
     if (!userScore) {
       const newUserScore = new UserScore({
