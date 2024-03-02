@@ -13,7 +13,7 @@ export default class scoreAPI {
 
   static saveEveryScore() {
     const scoresList = scoreAPI.getEveryScore();
-    const date = new Date(); // Declare date here
+    const date = new Date();
     const today = `userScore-${date.getMonth() + 1}${date.getDate()}`;
     if (!scoresList.includes(today)) {
       scoresList.push(today);

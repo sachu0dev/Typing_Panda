@@ -10,6 +10,8 @@ const acuracyDisplay = document.querySelector('.acuracy');
 const timerDisplay = document.querySelector('.timer');
 const keys = document.querySelectorAll('.key');
 const ninjaMode = document.querySelector('.mode');
+const accIcon = document.querySelector('.acc-icon');
+const accBtn = document.querySelector('.acc-btn');
 document.addEventListener('keydown', function(event) {
   if (event.key === "Tab" || event.ctrlKey) {
       event.preventDefault();
@@ -38,6 +40,7 @@ defaultBtn.addEventListener('click', setDefault);
 sentencesInput.forEach(function(div) {
   div.addEventListener("click", getTextContent);
 });
+window.addEventListener('DOMContentLoaded', setLogin);
 ninjaMode.addEventListener('click', setNinjaMode);
 async function fetchParagraph() { 
   try {
@@ -330,4 +333,13 @@ cursorAbod.addEventListener("click", ()=>{
   fetchParagraph();
   resetTimer();
 });
+
+function setLogin(){
+  const token = localStorage.getItem("token");
+  const username = localStorage.getItem("username");
+  if(token && username){
+    accBtn.classList.add("hide-acc-btn");
+    accIcon.classList.add("show-acc-icon");
+  }
+}
 export { score };

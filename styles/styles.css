@@ -129,17 +129,30 @@ html,body{
   margin-right: 2rem;
 }
 .right-header i{
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 .acc-btn{
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: bolder;
   color: var(--duo-1);
-  padding: .3rem .6rem;
+  padding: .5rem 1rem;
   background: #152238;
-  border-radius: 1rem;
-  border: 2px solid var(--duo-1);
+  border-radius: 5rem;
+  border: 3px solid var(--duo-1);
   cursor: pointer;
+}
+.hide-acc-btn{
+  display: none;
+}
+.acc-icon{
+  display: none;
+  align-items: center;
+  justify-content: center;
+  column-gap: 2rem;
+  color: var(--duo-1);
+}
+.show-acc-icon{
+  display: flex;
 }
 .acc-btn:hover{
   background: var(--duo-1);

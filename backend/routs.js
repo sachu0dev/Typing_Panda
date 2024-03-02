@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const User = require("./modal");
+const UserScore = require("./modal");
 const zod = require("zod");
 const app = express();
 const jwtPassword = "secret";
@@ -29,7 +30,8 @@ const signinSchema = zod.object({
 async function verifyUserToken(req, res, next){
   const token = req.headers.authorization;
   const decoded = jwt.verify(token, jwtPassword);
-  const user = await User.findOne({_id: decoded._id});
+  console.log(decoded)
+  const user = await User.findOne({email: decoded.email});
   if(!user){
     return res.status(401).json({
       message: "Unauthorized"
@@ -103,7 +105,8 @@ app.post("/signin",signinInputCheck, async (req, res) => {
         const token = jwt.sign(user, jwtPassword);
         return res.status(200).json({
           message: "Login successful",
-          token
+          token,
+          username: existingUser.username
         })
       }
       return res.status(400).json({
@@ -120,7 +123,46 @@ app.post("/signin",signinInputCheck, async (req, res) => {
     })
   }
 });
+app.post("/score", verifyUserToken, async (req, res) => {
+  try {
+    const userScore = await UserScore.findOne({ email: req.user.email });
+    const score = req.body;
+    console.log(score);
+    console.log(userScore);
+    if (!userScore) {
+      const newUserScore = new UserScore({
+        email: req.user.email,
+        todayscore: [score],
+        scores: [score]
+      });
+      await newUserScore.save();
+    } else {
+      if (!userScore.todayscore || !userScore.scores) {
+        userScore.todayscore = [score];
+        userScore.scores = [score];
+      } else {
+        userScore.todayscore.push(score);
+        userScore.scores.push(score);
+      }
+      await userScore.save();
+    }
+    return res.status(201).json({
+      message: "Score saved successfully"
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal Server Error"
+    });
+  }
+});
 
+app.get("/profile", verifyUserToken, (req, res) => {
+  
+})
+app.get("/rankings", verifyUserToken, (req, res) => {
+  
+})
 app.use((err, req, res, next)=>{
   res.status(500).json({
     message: err.message

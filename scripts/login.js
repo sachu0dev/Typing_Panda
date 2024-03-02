@@ -75,9 +75,13 @@ const raw = {
 function showError(result){
   errorBox.textContent = result.message;
   const token = result.token;
+  const username = result.username;
   if(token){
     localStorage.setItem("token", token);
-    window.location.href = "index.html";
+    localStorage.setItem("username", username);
+    setTimeout(() => {
+      window.location.href = "index.html";
+    },2000)
   }
   errorBox.classList.add("show-error");
   setTimeout(() => {
