@@ -492,7 +492,6 @@ span {
   -o-object-fit: contain;
      object-fit: contain;
   aspect-ratio: 1/1;
-  margin-right: 10px;
 }
 .col{
   width: 100%;
@@ -536,6 +535,21 @@ span {
 }
 .current-Abod{
   border: 2px solid var(--duo-1);
+}
+@media (max-width: 1900px){
+  .logo-col p{
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--uno-1);
+    margin-left: 1rem;
+  }
+  .logo-col img{
+    width: 60%;
+    height: 60%;
+    -o-object-fit: contain;
+       object-fit: contain;
+    aspect-ratio: 1/1;
+  }
 }
 @media (max-width: 1600px){
   .setting-container{
