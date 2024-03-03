@@ -85,6 +85,7 @@ const modal = document.querySelector('.modal');
 
 function createParagraph(words) {
   words = words.split('');
+  textSection.innerHTML = '';
   words.forEach((letter)=>{
     const div = document.createElement('div');
     div.textContent = letter;
