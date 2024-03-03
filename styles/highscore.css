@@ -39,7 +39,9 @@ html,body{
   color: var(--duo-1);
   
 }
-
+a{
+  color: var(--uno-3);
+}
 .container{
   display: flex;
   align-items: center;
@@ -53,9 +55,19 @@ html,body{
 .main{
   width: 70vw;
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   position: relative;
-  margin-right: 3rem;
-  padding: 4rem;
+  margin-right: 10rem;
+  margin-top: 5rem;
 }
 .main h1{
   width: 100%;
@@ -76,29 +88,34 @@ html,body{
 .user-ranks{
   width: 100%;
   max-height: 60vh;
-  border: 1px solid var(--uno-5);
+  border: 1px solid var(--duo-1);
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 2rem;
+  padding-top: 72px;
   overflow-y: scroll;
-}
-.fixed-header{
-  position: absolute;
-  top: -10px;
-  background: var(--uno-3);
-  border-bottom: 1px solid var(--uno-5);
 }
 .rank-col,
 .fixed-header{
   width: 100%;
   display: flex;
   justify-content: space-between;
-  font-size: 1.3rem;
+  font-size: 1.7rem;
+  font-weight: 700;
   color: var(--duo-1);
-  padding: 8px 10px;
+  padding: 1rem 1.4rem;
   align-items: center;
+  background-color: #152238;
+  border-bottom: 1px solid var(--uno-5);
+}
+.fixed-header{
+  position: absolute;
+  top: 0px;
+  background: var(--uno-3);
+}
+.user-ranks::-webkit-scrollbar{
+  display: none;
 }
 
 
@@ -177,20 +194,33 @@ html,body{
   height: 80vh;
   width: 15vw;
   position: absolute;
-  right: -18vw;
+  right: 0;
   top: 9vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border: 1px solid var(--uno-5);
 }
 .logo-col{
   width: 100%;
   height: 8rem;
   border-bottom: 1px solid var(--uno-5);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 .logo-col p{
   font-size: 1.7rem;

@@ -28,7 +28,7 @@
   font-family: 'Nunito', sans-serif;
 }
 a{
-  color: var(--duo-1);
+  color: var(--uno-3);
 }
 
 html,body{
@@ -146,7 +146,7 @@ html,body{
   height: 80vh;
   width: 15vw;
   position: absolute;
-  right: -18vw;
+  right: 0vw;
   top: 9vh;
   display: flex;
   flex-direction: column;
