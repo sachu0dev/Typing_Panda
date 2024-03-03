@@ -3,7 +3,7 @@ const userRanks = document.querySelector(".user-ranks");
 
 window.addEventListener('DOMContentLoaded', displayRank);
 async function getRanking(){
-  const response = await fetch("http://localhost:3000/rankings", {
+  const response = await fetch("https://typingpanda-backend.vercel.app/rankings", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

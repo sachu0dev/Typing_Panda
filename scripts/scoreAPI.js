@@ -1,7 +1,7 @@
 export default class scoreAPI {
     static async postScore(scoreToSave){
       const raw = scoreToSave;
-        const response = await fetch("http://localhost:3000/score", {
+        const response = await fetch("https://typingpanda-backend.vercel.app/score", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -14,7 +14,7 @@ export default class scoreAPI {
         console.log(result);
     }
     static async getScore(){
-      const response = await fetch("http://localhost:3000/profile", {
+      const response = await fetch("https://typingpanda-backend.vercel.app/profile", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -25,7 +25,7 @@ export default class scoreAPI {
       return result
     }
     static async getRanking(){
-      const response = await fetch("http://localhost:3000/ranking", {
+      const response = await fetch("https://typingpanda-backend.vercel.app/ranking", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

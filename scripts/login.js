@@ -57,7 +57,7 @@ const raw = {
   password,
   email
 };
-  const response = await fetch("http://localhost:3000/signin", {
+  const response = await fetch("https://typingpanda-backend.vercel.app/signin", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
