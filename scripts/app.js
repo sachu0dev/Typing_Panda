@@ -49,12 +49,14 @@ async function fetchParagraph() {
       const response = await fetch(`https://typing-panda-words.vercel.app/generate-paragraph?capital=${wordSettings.capital}&punctuations=${wordSettings.punctuations}&sentences=${wordSettings.sentences}`);
       const data = await response.json();
       words = data.paragraph;
+      textSection.innerHTML = "";
       createParagraph(words);
   } catch (error) {
       console.error('Error fetching paragraph:', error + " using local server if available");
       const response = await fetch(`http://localhost:3000/generate-paragraph?capital=${wordSettings.capital}&punctuations=${wordSettings.punctuations}&sentences=${wordSettings.sentences}`);
       const data = await response.json();
       words = data.paragraph;
+      textSection.innerHTML = "";
       createParagraph(words);
   }
 }
@@ -85,7 +87,6 @@ const modal = document.querySelector('.modal');
 
 function createParagraph(words) {
   words = words.split('');
-  textSection.innerHTML = '';
   words.forEach((letter)=>{
     const div = document.createElement('div');
     div.textContent = letter;
