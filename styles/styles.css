@@ -204,7 +204,9 @@ html,body{
 .active-opt{
   color: var(--duo-1);
 }
-
+.right-setting div{
+  padding: 0 10px;
+}
 /* text section */
 
 .text-section{

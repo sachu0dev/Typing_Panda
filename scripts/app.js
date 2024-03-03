@@ -23,7 +23,7 @@ let wordSettings ={
   sentences: 2,
   punctuations: false,
   capital: false,
-  ninja: false
+  ninja: true
 }
 let words = "";
 let score = {
@@ -208,7 +208,7 @@ function setCapital(){
 function setDefault(){
   wordSettings.punctuations = false;
   wordSettings.capital = false;
-  wordSettings.ninja = false;
+  wordSettings.ninja = true;
   wordSettings.sentences = 2;
   punctuationsBtn.classList.remove('active-opt');
   capitalBtn.classList.remove('active-opt');
