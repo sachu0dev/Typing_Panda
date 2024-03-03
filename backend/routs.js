@@ -106,8 +106,25 @@ var TodayScore = {
   avgAccuracy: 0,
   score: 0
 };
-
-
+async function clearTodayscore() {
+  try {
+      await UserScore.updateMany({}, { $set: { todayscore: [] } });
+      console.log('Todayscore cleared successfully.');
+  } catch (error) {
+      console.error('Error clearing todayscore:', error);
+  }
+}
+function checkDate() {
+  let currentDate = new Date().getDate();
+  setInterval(async () => {
+      let newDate = new Date().getDate();
+      if (newDate !== currentDate) {
+          await clearTodayscore();
+          currentDate = newDate;
+      }
+  }, 60000);
+}
+checkDate();
 async function getTopTenSpeeds(req, res, next) {
   try {
     // Retrieve all UserScore documents
