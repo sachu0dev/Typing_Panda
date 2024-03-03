@@ -24,4 +24,15 @@ export default class scoreAPI {
       const result = await response.json();
       return result
     }
+    static async getRanking(){
+      const response = await fetch("http://localhost:3000/ranking", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `${localStorage.getItem("token")}`
+        },
+      });
+      const result = await response.json();
+      return result
+    }
   }

@@ -82,7 +82,7 @@ html,body{
   flex-direction: column;
   align-items: center;
   padding-top: 2rem;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 .fixed-header{
   position: absolute;

@@ -76,7 +76,7 @@ async function calculateAllTime(req, res, next) {
       avgAccuracy: 0,
       score: 0
     };
-    const userscore = await UserScore.findOne({ email: req.user.email });
+    const userscore = await UserScore.findOne({ username: req.user.username });
     userscore.scores.forEach(obj => {
       AllScore.time += parseFloat(obj.time);
       AllScore.lessons += 1;
@@ -106,6 +106,32 @@ var TodayScore = {
   avgAccuracy: 0,
   score: 0
 };
+
+
+async function getTopTenSpeeds(req, res, next) {
+  try {
+    // Retrieve all UserScore documents
+    const allUserScores = await UserScore.find();
+
+    // Calculate top speed for each user
+    const userTopSpeeds = {};
+
+    allUserScores.forEach(score => {
+      const username = score.username;
+      const topSpeed = Math.max(...score.scores.map(entry => parseFloat(entry.speed)));
+
+      if (!userTopSpeeds[username] || topSpeed > userTopSpeeds[username].topSpeed) {
+        userTopSpeeds[username] = { username: username, topSpeed };
+      }
+    });
+    const topUsers = Object.values(userTopSpeeds).sort((a, b) => b.topSpeed - a.topSpeed).slice(0, 20);
+    res.json({ leaderboard: topUsers });
+  } catch (error) {
+    // Handle errors
+    console.error('Error fetching leaderboard:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
 async function calculateTodayTime(req, res, next) {
   try {
     TodayScore = {
@@ -116,7 +142,7 @@ async function calculateTodayTime(req, res, next) {
       avgAccuracy: 0,
       score: 0
     };
-    const userscore = await UserScore.findOne({ email: req.user.email });
+    const userscore = await UserScore.findOne({ username: req.user.username });
     userscore.todayscore.forEach(obj => {
       TodayScore.time += parseFloat(obj.time);
       TodayScore.lessons += 1;
@@ -220,11 +246,11 @@ const json = require('express').json;
 
 app.post("/score", verifyUserToken, async (req, res) => {
   try {
-    const userScore = await UserScore.findOne({ email: req.user.email });
+    const userScore = await UserScore.findOne({ username: req.user.username });
     const score = req.body;
     if (!userScore) {
       const newUserScore = new UserScore({
-        email: req.user.email,
+        username: req.user.username,
         todayscore: [score],
         scores: [score]
       });
@@ -258,9 +284,7 @@ app.get("/profile", verifyUserToken, calculateAllTime,calculateTodayTime, async 
     allTimeStats: AllScore
   })
 })
-app.get("/rankings", verifyUserToken, (req, res) => {
-  
-})
+app.get("/rankings", verifyUserToken,getTopTenSpeeds)
 app.use((err, req, res, next)=>{
   res.status(500).json({
     message: err.message

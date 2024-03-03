@@ -16,7 +16,7 @@ const User = mongoose.model("User", {
 });
 
 const UserScore = mongoose.model("UserScore", {
-  email: {
+  username: {
     type: String,
     required: true
   },
