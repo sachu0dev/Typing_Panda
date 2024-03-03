@@ -12,6 +12,7 @@ const todayLessons = document.querySelector('.today-lessons');
 const todayTopSpeed = document.querySelector('.today-top-speed');
 const todayAvgSpeed = document.querySelector('.today-avg-speed');
 const todayAvgAccuracy = document.querySelector('.today-avg-accuracy');
+const username = document.querySelector('.username');
 async function allDisplay(){
   try {
     const allScore = await scoreAPI.getScore();
@@ -36,12 +37,7 @@ async function allDisplay(){
 
 
 window.addEventListener('DOMContentLoaded', allDisplay);
-
-function formatTime(input) {
-  const hours = Math.floor(input / 60); 
-  const remainingMinutes = input % 60; 
-  const minutes = Math.floor(remainingMinutes); 
-  const seconds = Math.round((remainingMinutes - minutes) * 60);
-  
-  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+window.addEventListener('DOMContentLoaded', displayUsername);
+function displayUsername(){
+  username.innerHTML = `@${localStorage.getItem("username")}`;
 }
