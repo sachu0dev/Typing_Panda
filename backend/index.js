@@ -6,6 +6,7 @@ const zod = require("zod");
 const app = express();
 const jwtPassword = "secret";
 const cors = require('cors');
+const cron = require('node-cron');
 app.use(express.json());
 app.use(cors());
 // mongoose connection
@@ -106,14 +107,17 @@ var TodayScore = {
   avgAccuracy: 0,
   score: 0
 };
-async function clearTodayscore() {
-  try {
-      await UserScore.updateMany({}, { $set: { todayscore: [] } });
-      console.log('Todayscore cleared successfully.');
-  } catch (error) {
-      console.error('Error clearing todayscore:', error);
-  }
-}
+
+cron.schedule('0 0 * * *', async () => {
+    try {
+        // Assuming UserScore is a Mongoose model
+        await UserScore.updateMany({}, { $set: { todayscore: [] } });
+        console.log('Todayscore cleared successfully.');
+    } catch (error) {
+        console.error('Error clearing todayscore:', error.message || error);
+    }
+});
+
 function checkDate() {
   let currentDate = new Date().getDate();
   setInterval(async () => {
