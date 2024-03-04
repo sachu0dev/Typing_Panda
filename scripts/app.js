@@ -57,6 +57,7 @@ async function fetchParagraph() {
       const data = await response.json();
       words = data.paragraph;
       textSection.innerHTML = "";
+      currentLetterIndex = 0;
       createParagraph(words);
   }
 }
