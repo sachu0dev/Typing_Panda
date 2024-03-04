@@ -110,7 +110,6 @@ var TodayScore = {
 
 cron.schedule('0 0 * * *', async () => {
     try {
-        // Assuming UserScore is a Mongoose model
         await UserScore.updateMany({}, { $set: { todayscore: [] } });
         console.log('Todayscore cleared successfully.');
     } catch (error) {

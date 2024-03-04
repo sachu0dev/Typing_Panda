@@ -46,6 +46,11 @@ const response = await fetch("https://typingpanda-backend.vercel.app/signup", {
     const result = await response.json();
     if(result){
       showError(result);
+      if(result.message === "User created successfully"){
+        setTimeout(() => {
+          container.classList.remove("sign-up-mode");
+        },1000)
+      }
     }
 }
 
@@ -87,5 +92,5 @@ function showError(result){
   setTimeout(() => {
     errorBox.classList.remove("show-error");
     errorBox.textContent = "";
-  },2000)
+  },1000)
 }
