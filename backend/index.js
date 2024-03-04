@@ -314,3 +314,14 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+app.get('/chart',verifyUserToken, async (req, res) => {
+  const userscore = await UserScore.findOne({ username: req.user.username });
+  const scores =  await userscore.scores;
+  createSpeedData(scores).then(data => res.json(data));
+})
+function createSpeedData(scores) {
+  return scores.map((score, index) => ({
+    index: index + 1,
+    speed: parseFloat(score.speed)
+  }));
+}

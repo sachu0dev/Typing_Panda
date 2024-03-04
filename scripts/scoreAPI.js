@@ -35,4 +35,15 @@ export default class scoreAPI {
       const result = await response.json();
       return result
     }
+    static async getChart(){
+      const response = await fetch("https://typingpanda-backend.vercel.app/chart", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `${localStorage.getItem("token")}`
+        },
+      });
+      const result = await response.json();
+      return result
+    }
   }

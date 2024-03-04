@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "parcel ../profile.html",
+    "build": "parcel build ../profile.html"
+  },
+  "devDependencies": {
+    "parcel": "^2.6.2"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +22,8 @@
     "mongoose": "^8.2.0",
     "node-cron": "^3.0.3",
     "nodemon": "^3.1.0",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "@cubejs-client/core": "^0.31.0",
+    "chart.js": "^4.0.0"
   }
 }
