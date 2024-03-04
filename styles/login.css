@@ -414,6 +414,10 @@ a{
 	font-weight: 600;
 	border-radius: 5px;
 	display: none;
+  z-index: 1000000;
+  border: 1px solid white;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+  animation: fade 0.5s;
 }
 
 .show-error{
