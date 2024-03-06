@@ -7,10 +7,16 @@
     "config": { "includeFiles": ["dist/**"] }
    }
   ],
+  "functions": {
+    "cron": {
+      "handler": "index.js",
+      "schedule": "cron(30 18 * * *)" 
+    }
+  },
   "routes": [
    {
     "src": "/(.*)",
     "dest": "index.js"
    }
   ]
- }
+}
