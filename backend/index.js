@@ -109,6 +109,7 @@ var TodayScore = {
 };
 cron.schedule('0 0 * * *', async () => {
   try {
+    console.log("trying to clear today score");
       await UserScore.updateMany({}, { $set: { todayscore: [] } });
       console.log('Todayscore cleared successfully.');
   } catch (error) {
