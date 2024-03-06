@@ -7,7 +7,6 @@ const app = express();
 const jwtPassword = "secret";
 const cors = require('cors');
 const cron = require('node-cron');
-const clearTodayscore = require('./clearTodayscore');
 app.use(express.json());
 app.use(cors());
 // mongoose connection
@@ -109,7 +108,13 @@ var TodayScore = {
   score: 0
 };
 cron.schedule('30 18 * * *', async () => {
-  await clearTodayscore();
+  try {
+    console.log("Trying to clear today's score");
+    await UserScore.updateMany({}, { $set: { todayscore: [] } });
+    console.log('Todayscore cleared successfully.');
+  } catch (error) {
+    console.error('Error clearing todayscore:', error.message || error);
+  }
 });
 module.exports = app;
 function checkDate() {
