@@ -107,7 +107,7 @@ var TodayScore = {
   avgAccuracy: 0,
   score: 0
 };
-cron.schedule('0 0 * * *', async () => {
+cron.schedule('0 23 * * *', async () => {
   try {
     console.log("trying to clear today score");
       await UserScore.updateMany({}, { $set: { todayscore: [] } });
