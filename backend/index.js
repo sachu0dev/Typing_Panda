@@ -1,4 +1,5 @@
 const express = require('express');
+const cron = require('./controllers/cron.js');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const { User, UserScore } = require("./modal.js");
@@ -6,9 +7,7 @@ const zod = require("zod");
 const app = express();
 const jwtPassword = "secret";
 const cors = require('cors');
-const cron = require('node-cron');
-import { cron } from './controllers/cron.js';
-app.use('/cron', cron);
+app.use('/clear-todays-score', cron);
 app.use(express.json());
 app.use(cors());
 // mongoose connection
