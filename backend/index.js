@@ -8,7 +8,6 @@ const zod = require("zod");
 const app = express();
 const jwtPassword = "secret";
 const cors = require('cors');
-app.use('/clear-todays-score', cron);
 app.use(express.json());
 app.use(cors());
 // mongoose connection
