@@ -7,6 +7,8 @@ const app = express();
 const jwtPassword = "secret";
 const cors = require('cors');
 const cron = require('node-cron');
+import { cron } from './controllers/cron.js';
+app.use('/cron', cron);
 app.use(express.json());
 app.use(cors());
 // mongoose connection
