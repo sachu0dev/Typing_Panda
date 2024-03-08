@@ -1,4 +1,4 @@
-
+const cron = require('node-cron');
 const { UserScore } = require("../modal.js");
 async function clearTodaysScore() {
     try {
@@ -11,4 +11,4 @@ async function clearTodaysScore() {
 }
 
 // Export the function to be deployed as a serverless function
-module.exports = clearTodaysScore;
+module.exports = {cron, clearTodaysScore};
