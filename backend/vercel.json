@@ -1,22 +1,26 @@
 {
   "version": 2,
   "builds": [
-   {
-    "src": "index.js",
-    "use": "@vercel/node",
-    "config": { "includeFiles": ["dist/**"] }
-   }
-  ],
-  "crons": [
     {
-        "path": "/cron",
-        "schedule": "30 18 * * *"
+      "src": "index.js",
+      "use": "@vercel/node",
+      "config": { "includeFiles": ["dist/**"] }
+    },
+    {
+      "src": "/controllers/cron.js",
+      "use": "@vercel/node"
     }
-],
+  ],
+  "functions": {
+    "cron-job": {
+      "handler": "controllers/cron.js",
+      "schedule": "30 18 * * *"
+    }
+  },
   "routes": [
-   {
-    "src": "/(.*)",
-    "dest": "index.js"
-   }
+    {
+      "src": "/(.*)",
+      "dest": "index.js"
+    }
   ]
 }

@@ -1,5 +1,6 @@
 const express = require('express');
-const cron = require('./controllers/cron.js');
+// const cron = require('cron');
+const { cron } = require('./controllers/cron.js');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const { User, UserScore } = require("./modal.js");
