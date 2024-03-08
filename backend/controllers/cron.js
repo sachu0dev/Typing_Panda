@@ -1,5 +1,5 @@
 
-const { UserScore } = require("./modal.js");
+const { UserScore } = require("../modal.js");
 async function clearTodaysScore() {
     try {
         console.log("Trying to clear today's score");
