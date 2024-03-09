@@ -9,7 +9,7 @@
   ],
   "cron": [
     {
-        "path": "/controllers/cron.clearTodaysScore",
+        "path": "/controllers/cron.js",
         "schedule": "0 0 * * *"
     }
 ],
