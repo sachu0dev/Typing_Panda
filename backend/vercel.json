@@ -9,8 +9,8 @@
   ],
   "crons": [
     {
-        "path": "/index.js",
-        "schedule": "5 * * * *"
+        "path": "/controllers/cron.js",
+        "schedule": "30 8 * * *"
     }
 ],
   "routes": [
