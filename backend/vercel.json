@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
    {
-    "src": "index.js",
+    "src": "  index.js",
     "use": "@vercel/node",
     "config": { "includeFiles": ["dist/**"] }
    }
@@ -10,7 +10,7 @@
   "crons": [
     {
         "path": "/index.js",
-        "schedule": "30 18 * * *"
+        "schedule": "5 * * * *"
     }
 ],
   "routes": [
