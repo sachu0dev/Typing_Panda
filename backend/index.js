@@ -108,26 +108,9 @@ var TodayScore = {
   avgAccuracy: 0,
   score: 0
 };
-// app.get("/cleartoday", async (req, res)=>{
-//   try {
-//     await UserScore.updateMany({}, { $set: { todayscore: [] } });
-//     console.log('Todayscore cleared successfully.');
-// } catch (error) {
-//     console.error('Error clearing todayscore:', error.message || error);
-// }
-// })
+
 module.exports = app;
-function checkDate() {
-  let currentDate = new Date().getDate();
-  setInterval(async () => {
-      let newDate = new Date().getDate();
-      if (newDate !== currentDate) {
-          await clearTodayscore();
-          currentDate = newDate;
-      }
-  }, 60000);
-}
-checkDate();
+
 async function getTopTenSpeeds(req, res, next) {
   try {
     // Retrieve all UserScore documents
@@ -310,6 +293,28 @@ app.use((err, req, res, next)=>{
     message: err.message
   })
 })
+app.get("/chart", async (req, res) => {
+  try {
+      const statsArray = [];
+      const userScore = await UserScore.findOne({ username: "sushil" });
+      
+      if (!userScore) {
+          return res.status(404).json({ message: "User score not found" });
+      }
+
+      for (const score of userScore.scores) {
+          statsArray.push({
+              speed: score.speed,
+              accuracy: parseInt(score.acuracy)
+          });
+      }
+
+      res.json(statsArray);
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Server error" });
+  }
+});
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
