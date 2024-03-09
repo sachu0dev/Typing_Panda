@@ -5,18 +5,22 @@
       "src": "index.js",
       "use": "@vercel/node",
       "config": { "includeFiles": ["dist/**"] }
-    }
-  ],
-  "crons": [
+    },
     {
-      "path": "/controllers/cron.js",
-      "schedule": "0 0 * * *"
+      "src": "cron.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
       "dest": "index.js"
+    }
+  ],
+  "cron": [
+    {
+      "path": "cron.js",
+      "schedule": "0 0 * * *"
     }
   ]
 }
