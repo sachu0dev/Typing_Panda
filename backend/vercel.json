@@ -7,10 +7,10 @@
     "config": { "includeFiles": ["dist/**"] }
    }
   ],
-  "crons": [
+  "cron": [
     {
-        "path": "/controllers/cron.js",
-        "schedule": "30 8 * * *"
+        "path": "/controllers/cron.clearTodaysScore",
+        "schedule": "0 0 * * *"
     }
 ],
   "routes": [
