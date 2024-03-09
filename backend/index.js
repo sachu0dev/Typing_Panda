@@ -108,15 +108,14 @@ var TodayScore = {
   avgAccuracy: 0,
   score: 0
 };
-cron.schedule('30 18 * * *', async () => {
-  try {
-    console.log("Trying to clear today's score");
-    await UserScore.updateMany({}, { $set: { todayscore: [] } });
-    console.log('Todayscore cleared successfully.');
-  } catch (error) {
-    console.error('Error clearing todayscore:', error.message || error);
-  }
-});
+// app.get("/cleartoday", async (req, res)=>{
+//   try {
+//     await UserScore.updateMany({}, { $set: { todayscore: [] } });
+//     console.log('Todayscore cleared successfully.');
+// } catch (error) {
+//     console.error('Error clearing todayscore:', error.message || error);
+// }
+// })
 module.exports = app;
 function checkDate() {
   let currentDate = new Date().getDate();
