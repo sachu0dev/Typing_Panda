@@ -12,12 +12,18 @@ const keys = document.querySelectorAll('.key');
 const ninjaMode = document.querySelector('.mode');
 const accIcon = document.querySelector('.acc-icon');
 const accBtn = document.querySelector('.acc-btn');
+const logout = document.querySelector(".log-out");
 document.addEventListener('keydown', function(event) {
   if (event.key === "Tab" || event.ctrlKey) {
       event.preventDefault();
       location.reload();
   }
 });
+logout.addEventListener("click", ()=>{
+  localStorage.removeItem("token");
+  localStorage.removeItem("username");
+  location.reload();
+})
 let current = "current";
 let wordSettings ={
   sentences: 2,
