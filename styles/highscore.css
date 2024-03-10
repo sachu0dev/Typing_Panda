@@ -94,6 +94,7 @@ a{
   flex-direction: column;
   align-items: center;
   padding-top: 72px;
+  scroll-behavior: smooth;
   overflow-y: scroll;
 }
 .rank-col,
@@ -114,11 +115,18 @@ a{
   top: 0px;
   background: var(--uno-3);
 }
-.user-ranks::-webkit-scrollbar{
-  display: none;
+::-webkit-scrollbar {
+  width: 8px;
 }
-
-
+::-webkit-scrollbar-track {
+  background: #152238;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--uno-3);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--uno-3);
+}
 
 
 
