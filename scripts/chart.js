@@ -1,8 +1,15 @@
-const { default: scoreAPI } = require("./scoreAPI");
 
+// const lessons = scoreAPI.getChart();
 (async () => {
-  const lessons = scoreAPI.getChart();
 
+const response = await fetch("https://typingpanda-backend.vercel.app/chart", {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": `${localStorage.getItem("token")}`
+  },
+});
+const lessons = await response.json();
   const labels = lessons.map((_, index) => `Lesson ${index + 1}`);
 
   const speeds = lessons.map(lesson => lesson.speed);
@@ -16,25 +23,25 @@ const { default: scoreAPI } = require("./scoreAPI");
           datasets: [{
               label: 'Speed',
               data: speeds,
-              borderColor: '#34febb', // Using --duo-1 color for speed line
+              borderColor: '#34febb', 
               borderWidth: 2,
               fill: false,
               lineTension: 0.3,
-              pointBackgroundColor: '#34febb', // Using --duo-1 color for speed points
+              pointBackgroundColor: '#34febb',
               pointHoverRadius: 5,
-              pointHoverBorderColor: '#34febb', // Using --duo-1 color for speed hover points
+              pointHoverBorderColor: '#34febb', 
               pointHoverBorderWidth: 2
           },
           {
               label: 'Accuracy',
               data: accuracy,
-              borderColor: '#5d8cc0', // Using --uno-3 color for accuracy line
+              borderColor: '#5d8cc0', 
               borderWidth: 2,
               fill: false,
               lineTension: 0.3,
-              pointBackgroundColor: '#5d8cc0', // Using --uno-3 color for accuracy points
+              pointBackgroundColor: '#5d8cc0', 
               pointHoverRadius: 5,
-              pointHoverBorderColor: '#5d8cc0', // Using --uno-3 color for accuracy hover points
+              pointHoverBorderColor: '#5d8cc0', 
               pointHoverBorderWidth: 2
           }
           ]
@@ -46,26 +53,26 @@ const { default: scoreAPI } = require("./scoreAPI");
                   title: {
                       display: true,
                       text: 'Value',
-                      color: '#d6e9ff' // Setting font color to #d6e9ff for the axis labels
+                      color: '#d6e9ff' 
                   },
                   grid: {
                       display: false
                   },
                   ticks: {
-                      color: '#d6e9ff' // Setting font color to #d6e9ff for the axis labels
+                      color: '#d6e9ff' 
                   }
               },
               x: {
                   title: {
                       display: true,
                       text: 'Lessons',
-                      color: '#d6e9ff' // Setting font color to #d6e9ff for the axis labels
+                      color: '#d6e9ff' 
                   },
                   grid: {
                       display: false
                   },
                   ticks: {
-                      color: '#d6e9ff' // Setting font color to #d6e9ff for the axis labels
+                      color: '#d6e9ff' 
                   }
               }
           },
@@ -75,7 +82,7 @@ const { default: scoreAPI } = require("./scoreAPI");
                   text: 'Speed vs Accuracy Chart',
                   font: {
                       size: 14,
-                      color: '#d6e9ff' // Setting font color to #d6e9ff for the chart title
+                      color: '#d6e9ff' 
                   }
               },
               legend: {
@@ -90,7 +97,7 @@ const { default: scoreAPI } = require("./scoreAPI");
                   },
                   bodyFont: {
                       size: 12,
-                      color: '#d6e9ff' // Setting body font color to #d6e9ff
+                      color: '#d6e9ff' 
                   },
                   titleSpacing: 4,
                   bodySpacing: 4,
