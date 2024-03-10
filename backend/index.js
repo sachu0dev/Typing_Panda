@@ -293,10 +293,10 @@ app.use((err, req, res, next)=>{
     message: err.message
   })
 })
-app.get("/chart", async (req, res) => {
+app.get("/chart",verifyUserToken, async (req, res) => {
   try {
       const statsArray = [];
-      const userScore = await UserScore.findOne({ username: "sushil" });
+      const userScore = await UserScore.findOne({ username: req.user.username });
       
       if (!userScore) {
           return res.status(404).json({ message: "User score not found" });

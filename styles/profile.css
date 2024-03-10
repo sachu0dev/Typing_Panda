@@ -45,7 +45,7 @@ html,body{
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: 100vh;
+  height: auto;
   overflow: hidden;
   position: relative;
 }
@@ -140,7 +140,13 @@ html,body{
   font-size: 2rem;
 }
 
-
+/* chart */
+.chart-container{
+  border: 2px solid var(--uno-2);
+  padding: 2rem;
+  margin-bottom: 5rem;
+  margin-top: 2rem;
+}
 /* sidebar */
 .sidebar{
   height: 80vh;
