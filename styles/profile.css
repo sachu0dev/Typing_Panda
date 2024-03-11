@@ -56,13 +56,14 @@ html,body{
   position: relative;
   margin-right: 3rem;
   padding: 4rem;
+  padding-top: 1rem;
 }
 .main h1{
   width: 100%;
   font-size: 3.5rem;
   font-weight: 700;
   color: var(--uno-1);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 .stat-col{
   margin: 1rem 0;
