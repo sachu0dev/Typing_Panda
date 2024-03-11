@@ -1,6 +1,6 @@
 const express = require('express');
 // const cron = require('cron');
-const { cron } = require('./controllers/cron.js');
+const { cron } = require('./api/cron.js');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const { User, UserScore } = require("./modal.js");
@@ -110,14 +110,14 @@ var TodayScore = {
 };
 
 module.exports = app;
-export default async function handler(req, res) {
-  try {
-    await UserScore.updateMany({}, { $set: { todayscore: [] } });
-    console.log('Todayscore cleared successfully.');
-} catch (error) {
-    console.error('Error clearing todayscore:', error.message || error);
-}
-}
+// export default async function handler(req, res) {
+//   try {
+//     await UserScore.updateMany({}, { $set: { todayscore: [] } });
+//     console.log('Todayscore cleared successfully.');
+// } catch (error) {
+//     console.error('Error clearing todayscore:', error.message || error);
+// }
+// }
 async function getTopTenSpeeds(req, res, next) {
   try {
     // Retrieve all UserScore documents
