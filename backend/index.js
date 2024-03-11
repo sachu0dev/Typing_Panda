@@ -110,7 +110,14 @@ var TodayScore = {
 };
 
 module.exports = app;
-
+export default async function handler(req, res) {
+  try {
+    await UserScore.updateMany({}, { $set: { todayscore: [] } });
+    console.log('Todayscore cleared successfully.');
+} catch (error) {
+    console.error('Error clearing todayscore:', error.message || error);
+}
+}
 async function getTopTenSpeeds(req, res, next) {
   try {
     // Retrieve all UserScore documents
