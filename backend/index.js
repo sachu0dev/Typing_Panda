@@ -226,7 +226,6 @@ app.post("/signin",signinInputCheck, async (req, res) => {
   try {
     const user = {
       email: req.body.email,
-      password: req.body.password,
     }
     const existingUser = await User.findOne({email: user.email});
     if(existingUser){
