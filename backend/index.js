@@ -226,11 +226,12 @@ app.post("/signin",signinInputCheck, async (req, res) => {
   try {
     const user = {
       email: req.body.email,
+      password: req.body.password,
     }
     const existingUser = await User.findOne({email: user.email});
     if(existingUser){
       if(existingUser.password === user.password){
-        const token = jwt.sign(user, jwtPassword);
+        const token = jwt.sign(user.email, jwtPassword);
         return res.status(200).json({
           message: "Login successful",
           token,
