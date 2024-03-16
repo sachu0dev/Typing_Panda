@@ -228,10 +228,13 @@ app.post("/signin",signinInputCheck, async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     }
+    const userEmail = {
+      email: req.body.email
+    }
     const existingUser = await User.findOne({email: user.email});
     if(existingUser){
       if(existingUser.password === user.password){
-        const token = jwt.sign(user.email, jwtPassword);
+        const token = jwt.sign(userEmail, jwtPassword);
         return res.status(200).json({
           message: "Login successful",
           token,
