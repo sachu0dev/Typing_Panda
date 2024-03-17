@@ -10,6 +10,7 @@ const jwtPassword = "secret";
 const cors = require('cors');
 app.use(express.json());
 app.use(cors());
+app.use('/cron', cron);
 // mongoose connection
 mongoose.connect("mongodb+srv://admin:sachu@typingpanda.mgdkzdd.mongodb.net/main", {
 }).then(() => {
