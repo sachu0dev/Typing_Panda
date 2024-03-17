@@ -13,7 +13,7 @@ const accIcon = document.querySelector('.acc-icon');
 const accBtn = document.querySelector('.acc-btn');
 const logout = document.querySelector(".log-out");
 document.addEventListener('keydown', function(event) {
-  if (event.key === "Tab" || event.ctrlKey) {
+  if (event.key === "Tab" || event.key === "Escape") {
     event.preventDefault();
     location.reload();
   }
