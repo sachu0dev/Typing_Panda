@@ -10,7 +10,7 @@ const { UserScore } = require("../modal.js");
 //     }
 
 // }
-export const cron = async () => {
+const cron = async () => {
     try {
         await UserScore.updateMany({}, { $set: { todayscore: [] } });
         console.log('Todayscore cleared successfully.');
@@ -18,3 +18,5 @@ export const cron = async () => {
         console.error('Error clearing todayscore:', error.message || error);
     }
 };
+
+module.exports = cron;
