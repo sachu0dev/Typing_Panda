@@ -15,7 +15,15 @@ const logout = document.querySelector(".log-out");
 document.addEventListener('keydown', function(event) {
   if (event.key === "Tab" || event.key === "Escape") {
     event.preventDefault();
-    location.reload();
+      isStartedTyping = false;
+      score = {
+        speed: 0,
+        error: 0,
+        totalLength: 0
+      }
+  textSection.innerHTML = "";
+  currentLetterIndex = 0;
+  fetchParagraph();
   }
 });
 logout.addEventListener("click", () => {
