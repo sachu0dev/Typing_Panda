@@ -3,6 +3,7 @@ const cron = require('./api/cron');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const { User, UserScore } = require("./modal.js");
+require('dotenv').config();
 const zod = require("zod");
 const app = express();
 const jwtPassword = "secret";
@@ -10,8 +11,9 @@ const cors = require('cors');
 app.use(express.json());
 app.use(cors());
 app.use('/cron', cron);
+const mongodbUri = process.env.MONGODB_URI;
 // mongoose connection
-mongoose.connect("mongodb+srv://admin:sachu@typingpanda.mgdkzdd.mongodb.net/main", {
+mongoose.connect(mongodbUri, {
 }).then(() => {
     console.log("MongoDB Connected");
 }).catch(err => {
