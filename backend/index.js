@@ -136,7 +136,7 @@ async function getTopTenSpeeds(req, res, next) {
         userTopSpeeds[username] = { username: username, topSpeed };
       }
     });
-    const topUsers = Object.values(userTopSpeeds).sort((a, b) => b.topSpeed - a.topSpeed).slice(0, 20);
+    const topUsers = Object.values(userTopSpeeds).sort((a, b) => b.topSpeed - a.topSpeed);
     res.json({ leaderboard: topUsers });
   } catch (error) {
     // Handle errors

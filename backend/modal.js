@@ -38,3 +38,4 @@ const UserScore = mongoose.model("UserScore", {
 
 
 module.exports = { User, UserScore };
+
